@@ -10,10 +10,10 @@ class TipetarifSeeder extends Seeder
     public function run()
     {
         $id = (new TipetarifModel())->insert([
-            'tipe'  =>'tarif normal',
-            'keterangan'    =>'tipe tarif normal',
-            'urutan'    =>'1',
-            'aktif' =>'y',
+            'tipe' => 'normal',
+            'keterangan' => 'hari biasa',
+            'urutan' => 'pertama',
+            'aktif' => 'Y',
         ]);
         echo "hasil id = $id";
     }
