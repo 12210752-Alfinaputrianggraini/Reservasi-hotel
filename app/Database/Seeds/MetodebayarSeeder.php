@@ -2,6 +2,7 @@
 
 namespace App\Database\Seeds;
 
+use App\Database\Migrations\Metodebayar;
 use App\Models\MetodebayarModel;
 use CodeIgniter\Database\Seeder;
 
@@ -10,9 +11,9 @@ class MetodebayarSeeder extends Seeder
     public function run()
     {
         $id = (new MetodebayarModel())->insert([
-            'metode'    =>'cash',
-            'aktif' =>'y',
+            'metode' => 'transfer',
+            'aktif' => 'Y',
         ]);
-        echo "hasil id $id";
+        echo "hasil id = $id";
     }
 }

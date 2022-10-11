@@ -2,22 +2,20 @@
 
 namespace App\Database\Seeds;
 
-use App\Model\TipeKamarModel;
 use App\Models\KamartipeModel;
 use CodeIgniter\Database\Seeder;
 
-class KamarTipe extends Seeder
+class KamartipeSeeder extends Seeder
 {
     public function run()
     {
         $id = (new KamartipeModel())->insert([
-            'kamartipe_id' =>'deluxe',
-            'keterangan' =>'tipe deluxe',
-            'urutan' =>'2',
-            'aktif' =>'Y',
-            'gambar' =>'foto',
+            'tipe' => 'deluxe',
+            'keterangan' => 'besar',
+            'urutan' => 'pertama',
+            'aktif' => 'Y',
+            'gambar' => 'foto kamar',
         ]);
         echo "hasil id = $id";
-
     }
 }
