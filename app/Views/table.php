@@ -76,7 +76,7 @@
                         <input type="date" name="tgl_lhr" class="form-control" />
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Nomor Telepon</label>
+                        <label class="form-label">Nomor Telpon</label>
                         <input type="int" name="no_telp" class="form-control" />
                     </div>
                     <div class="mb-3">
@@ -121,8 +121,27 @@
 
 <script>
     $(document)-ready(function(){
+        $('formPengguna').submitAjax({
+            pre:()=>{
+                $('button#btn-kirim').hide();
+            },
+            pasca:()=>{
+                $('button#-kirim').show();
+            },
+            success:(response, status)=>{
+                $("#modalForm").modal('hide');
+                $("table#table-pelanggan").DataTable().ajax.reload();
+            },
+            error:  (xhr, status)=>{
+                alert('Maaf, data pengguna gagal direkam');
+            }
+        })
+        $('button#btn-kirim').on('click', function(){
+            $('form#formPengguna').submit();
+        })
         $('button#btn-tambah').on('click', function(){
             $('#modalForm').modal('show');
+            $('form#formPengguna').trigger('reset');
         });
 
         $('table#table-pelanggan').DataTable({

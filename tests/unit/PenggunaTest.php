@@ -13,7 +13,7 @@ class PenggunaTest extends CIUnitTestCase{
     public function testLogin(){
         $this->call('post', 'login', [
             'email' => '12210744@bsi.ac.id',
-            'sandi' => '123456789'
+            'sandi' => '123456'
         ])->assertStatus(200);
     }
     

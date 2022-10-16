@@ -19,7 +19,7 @@
     <body>
         <div class="container">
             <form id="form-login" method="post" action="<?=base_url('/login')?>">
-                <h3>Login Aplikasi Reservasi Hotel</h3>
+                <h3>Login_Aplikasi_Reservasi_Hotel</h3>
 
                 <div class="row">
                     <div class="form-froup col-md-4">

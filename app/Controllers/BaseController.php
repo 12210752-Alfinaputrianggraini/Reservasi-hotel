@@ -41,7 +41,7 @@ abstract class BaseController extends Controller
     /**
      * @var Session
      */
-    protected $Session;
+    protected $session;
 
     /**
      * Constructor.
@@ -53,6 +53,6 @@ abstract class BaseController extends Controller
 
         // Preload any models, libraries, etc, here.
 
-        $this->Session = \Config\Services::Session();
+        $this->session = \Config\Services::session();
     }
 }

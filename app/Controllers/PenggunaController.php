@@ -101,18 +101,18 @@ class PenggunaController extends BaseController
         $sandi    = $this->request->getVar('sandi');
 
         $id = $pm->insert([
-            'nama_depan' => $this->request->getVar('nama_depan'),
+            'nama_depan'    => $this->request->getVar('nama_depan'),
             'nama_belakang' => $this->request->getVar('nama_belakang'),
-            'gender'    => $this->request->getVar('gender'),
-            'alamat'    => $this->request->getVar('alamat'),
-            'kota'    => $this->request->getVar('kota'),
-            'tgl_lhr'    => $this->request->getVar('tgl_lhr'),
-            'notelp'    => $this->request->getVar('notelp'),
-            'email'     => $this->request->getVar('email'),
-            'level'    => $this->request->getVar('level'),
-            'foto'    => $this->request->getVar('foto'),
-            'sandi'     => password_hash($sandi, PASSWORD_BCRYPT),
-            'token_reset'    => $this->request->getVar('token_reset'),
+            'gender'        => $this->request->getVar('gender'),
+            'alamat'        => $this->request->getVar('alamat'),
+            'kota'          => $this->request->getVar('kota'),
+            'tgl_lhr'       => $this->request->getVar('tgl_lhr'),
+            'notelp'        => $this->request->getVar('notelp'),
+            'email'         => $this->request->getVar('email'),
+            'level'         => $this->request->getVar('level'),
+            'foto'          => $this->request->getVar('foto'),
+            'sandi'         => password_hash($sandi, PASSWORD_BCRYPT),
+            'token_reset'   => $this->request->getVar('token_reset'),
         ]);
         return $this->response->setJSON(['id' => $id])
                               ->setStatusCode( intval($id) > 0 ? 200 : 406 );
@@ -125,17 +125,17 @@ class PenggunaController extends BaseController
             throw PageNotFoundException::forPageNotFound();
 
         $hasil   = $pm->update($id, [
-            'nama_depan' => $this->request->getVar('nama_depan'),
+            'nama_depan'    => $this->request->getVar('nama_depan'),
             'nama_belakang' => $this->request->getVar('nama_belakang'),
-            'gender'    => $this->request->getVar('gender'),
-            'alamat'    => $this->request->getVar('alamat'),
-            'kota'    => $this->request->getVar('kota'),
-            'tgl_lhr'    => $this->request->getVar('tgl_lhr'),
-            'notelp'    => $this->request->getVar('notelp'),
-            'email'     => $this->request->getVar('email'),
-            'level'    => $this->request->getVar('level'),
-            'foto'    => $this->request->getVar('foto'),
-            'token_reset'    => $this->request->getVar('token_reset'),
+            'gender'        => $this->request->getVar('gender'),
+            'alamat'        => $this->request->getVar('alamat'),
+            'kota'          => $this->request->getVar('kota'),
+            'tgl_lhr'       => $this->request->getVar('tgl_lhr'),
+            'notelp'        => $this->request->getVar('notelp'),
+            'email'         => $this->request->getVar('email'),
+            'level'         => $this->request->getVar('level'),
+            'foto'          => $this->request->getVar('foto'),
+            'token_reset'   => $this->request->getVar('token_reset'),
         ]);
         return $this->response->setJSON(['result'=>$hasil]);
     }
