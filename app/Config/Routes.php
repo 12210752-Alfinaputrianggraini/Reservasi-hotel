@@ -44,7 +44,7 @@ $routes->group('login', function(RouteCollection $routes){
     $routes->get('/', 'PenggunaController::viewLogin');
     $routes->post('/', 'PenggunaController::login');
     $routes->delete('/', 'PenggunaController::logout');
-    $routes->patch('/', 'PenggunaController::lupaPassword');
+    $routes->patch('/', 'PenggunaController::lupapassword');
 });
 
 $routes->group('Pengguna', function(RouteCollection $routes){

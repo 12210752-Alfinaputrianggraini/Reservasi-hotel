@@ -29,7 +29,7 @@
                             <input type="email" name="email" class="form-control" id="email"
                                     placeholder="name@example.com">
                         </div>
-                        <button type="submit" class="btn btn-primary mb-3">Reset Password saya</button>
+                        <button type="submit" class="btn btn-primary mb-3">Reset Password Saya</button>
                     </div>
                 </div>
                 
