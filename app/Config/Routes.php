@@ -37,7 +37,7 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Home::index'); 
 
 $routes->group('login', function(RouteCollection $routes){
     $routes->get('lupa', 'PenggunaController::viewLupaPassword');
@@ -45,6 +45,7 @@ $routes->group('login', function(RouteCollection $routes){
     $routes->post('/', 'PenggunaController::login');
     $routes->delete('/', 'PenggunaController::logout');
     $routes->patch('/', 'PenggunaController::lupaPassword');
+    
 });
 
 $routes->group('Pengguna', function(RouteCollection $routes){

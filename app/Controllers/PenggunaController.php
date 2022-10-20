@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use Agoenxz21\Datatables\Datatable;
 use App\Controllers\BaseController;
-use App\Database\Migrations\Pengguna;
 use App\Models\PenggunaModel;
 use CodeIgniter\Email\Email;
 use CodeIgniter\Exceptions\PageNotFoundException;
