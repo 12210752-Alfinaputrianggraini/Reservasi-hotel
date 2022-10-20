@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use CodeIgniter\Router\RouteCollection;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -37,19 +39,39 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
-/*
- * --------------------------------------------------------------------
- * Additional Routing
- * --------------------------------------------------------------------
- *
- * There will often be times that you need additional routing and you
- * need it to be able to override any defaults in this file. Environment
- * based routes is one such time. require() additional route files here
- * to make that happen.
- *
- * You will have access to the $routes object within that file without
- * needing to reload it.
- */
-if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
-}
+$routes->group('kamartarif', function(RouteCollection $routes){
+   $routes->get('/', 'Kamartarifcontroller::index');
+   $routes->post('/', 'Kamartarifcontroller::store');
+   $routes->patch('/', 'Kamartarifcontroller::update');
+   $routes->delete('/', 'Kamartarifcontroller::delete');
+   $routes->get('(:num)', 'Kamartarifcontroller::show/$1');
+   $routes->get('all', 'Kamartarifcontroller::all');
+});
+
+$routes->group('kamarstatus', function(RouteCollection $routes){
+    $routes->get('/', 'Kamarstatuscontroller::index');
+    $routes->post('/', 'Kamarstatuscontroller::store');
+    $routes->patch('/', 'Kamarstatuscontroller::update');
+    $routes->delete('/', 'Kamarstatuscontroller::delete');
+    $routes->get('(:num)', 'Kamarstatuscontroller::show/$1');
+    $routes->get('all', 'Kamarstatuscontroller::all');
+ });
+
+ $routes->group('kamar', function(RouteCollection $routes){
+    $routes->get('/', 'kamarcontroller::index');
+    $routes->post('/', 'kamarcontroller::store');
+    $routes->patch('/', 'kamarcontroller::update');
+    $routes->delete('/', 'kamarstatuscontroller::delete');
+    $routes->get('(:num)', 'kamarstatuscontroller::show/$1');
+    $routes->get('all', 'kamarstatuscontroller::all');
+ });
+
+ $routes->group('pemesananstatus', function(RouteCollection $routes){
+    $routes->get('/', 'pemesananstatuscontroller::index');
+    $routes->post('/', 'pemesananstatuscontroller::store');
+    $routes->patch('/', 'pemesananstatuscontroller::update');
+    $routes->delete('/', 'pemesananstatuscontroller::delete');
+    $routes->get('(:num)', 'pemesananstatuscontroller::show/$1');
+    $routes->get('all', 'pemesananstatuscontroller::all');
+ });
+ 
