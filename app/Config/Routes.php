@@ -48,7 +48,7 @@ $routes->group('login', function(RouteCollection $routes){
     
 });
 
-$routes->group('Pengguna', function(RouteCollection $routes){
+$routes->group('pengguna', function(RouteCollection $routes){
     $routes->get('/', 'PenggunaController::index');
     $routes->post('/', 'PenggunaController::store');
     $routes->patch('/', 'PenggunaController::update');

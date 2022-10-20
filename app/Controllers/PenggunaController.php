@@ -31,7 +31,7 @@ class PenggunaController extends BaseController
         }
 
         $this->session->set('pengguna', $pengguna);
-        return $this->response->setJSON(['message'=>"Selamat Datang {$pengguna['nama']}"])
+        return $this->response->setJSON(['message'=>"Selamat Datang {$pengguna['nama_depan']}"])
                     ->setStatusCode(200);
     }
     public function viewLogin(){
