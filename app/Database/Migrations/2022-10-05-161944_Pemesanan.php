@@ -10,17 +10,17 @@ class Pemesanan extends Migration
     {
         $this->forge->addField([
             'id'  => [ 'type'=>'int', 'constraint'=>10, 'unsigned'=>true, 'auto_increment'=>true ],
-            'kamar_id'  => [ 'type'=>'int', 'constraint'=>10,'null'=>false ],
+            'kamar_id'  => [ 'type'=>'int', 'constraint'=>10,  'unsigned'=>true, 'null'=>false ],
             'tgl_mulai'  => [ 'type'=>'date','null'=>true ],
             'tgl_selesai'  => [ 'type'=>'date', 'null'=>true ],
-            'pemesananstatus_id'  => [ 'type'=>'int','constraint'=>10, 'null'=>true ],
-            'tamu_id'  => [ 'type'=>'int','constraint'=>10, 'null'=>true ],
+            'pemesananstatus_id'  => [ 'type'=>'int','constraint'=>10, 'unsigned'=>true, 'null'=>true ],
+            'tamu_id'  => [ 'type'=>'int','constraint'=>10, 'null'=>true, 'unsigned'=>true  ],
             
         ]); 
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('kamar_id','kamar','id','cascade','set null');
-        $this->forge->addForeignKey('pemesananstatus_id','pemesananstatus','id','cascade','set null');
-        $this->forge->addForeignKey('tamu_id','tamu','id','cascade','set null');
+        $this->forge->addForeignKey('kamar_id','kamar','id','cascade');
+        $this->forge->addForeignKey('pemesananstatus_id','pemesananstatus','id','cascade');
+        $this->forge->addForeignKey('tamu_id','tamu','id','cascade');
         $this->forge->createTable('pemesanan');
 
     }
