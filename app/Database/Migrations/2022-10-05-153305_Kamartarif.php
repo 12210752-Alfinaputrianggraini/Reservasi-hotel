@@ -11,7 +11,7 @@ class Kamartarif extends Migration
         $this->forge->addField([
             'id'  => [ 'type'=>'int', 'constraint'=>10, 'unsigned'=>true, 'auto_increment'=>true ],
             'kamartipe_id'  => [ 'type'=>'int', 'constraint'=>10, 'unsigned'=>true, 'null'=>false ],
-            'tarif'  => [ 'type'=>'double', 'constraint'=>50,'null'=>true ],
+            'tarif'  => [ 'type'=>'double', 'null'=>true ],
             'tgl_mulai'  => [ 'type'=>'date', 'null'=>true ],
             'tgl_selesai'  => [ 'type'=>'date', 'null'=>true ],
             'tipetarif_id'  => [ 'type'=>'int', 'constraint'=>10, 'unsigned'=>true,'null'=>true ],
@@ -20,8 +20,8 @@ class Kamartarif extends Migration
             'deleted_at'  => [ 'type'=>'datetime', 'null'=>true ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('kamartipe_id','kamartipe','id','cascade','set null');
-        $this->forge->addForeignKey('tipetarif_id','tipetarif','id','cascade','set null');
+        $this->forge->addForeignKey('kamartipe_id','kamartipe','id','cascade');
+        $this->forge->addForeignKey('tipetarif_id','tipetarif','id','cascade');
         $this->forge->createTable('kamartarif');
 
     }

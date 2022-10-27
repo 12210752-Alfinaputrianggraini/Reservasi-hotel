@@ -15,7 +15,7 @@ class Tamu extends Migration
             'gender'  => [ 'type'=>'enum("L","P")', 'null'=>true ],
             'alamat'  => [ 'type'=>'varchar', 'constraint'=>250, 'null'=>true ],
             'kota'  => [ 'type'=>'varchar', 'constraint'=>50, 'null'=>true ],
-            'negara_id'  => [ 'type'=>'int','constraint'=>10, 'null'=>true ],
+            'negara_id'  => [ 'type'=>'int','constraint'=>10, 'unsigned'=>true, 'null'=>true ],
             'nohp'  => [ 'type'=>'varchar', 'constraint'=>16, 'null'=>true ],
             'email'  => [ 'type'=>'varchar', 'constraint'=>255, 'null'=>true ],
             'sandi'  => [ 'type'=>'varchar', 'constraint'=>60, 'null'=>true ],
@@ -25,7 +25,7 @@ class Tamu extends Migration
             'deleted_at'  => [ 'type'=>'datetime', 'null'=>true ],   
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('negara_id','negara','id','cascade','set null');
+        $this->forge->addForeignKey('negara_id','negara','id','cascade');
         $this->forge->createTable('tamu');
     }
 

@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d648ee3b65e8d352e12e15817702e7cd",
+    "content-hash": "b294a03c20bf4a937cf8c9dc03c8447a",
     "packages": [
+        {
+            "name": "agoenxz21/datatables",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/agoenxz2186/datatable.git",
+                "reference": "d20b65280b5840b2efaab04b4aa4603b946306ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/agoenxz2186/datatable/zipball/d20b65280b5840b2efaab04b4aa4603b946306ff",
+                "reference": "d20b65280b5840b2efaab04b4aa4603b946306ff",
+                "shasum": ""
+            },
+            "require": {
+                "codeigniter4/framework": "^4",
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Agoenxz21\\Datatables\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Agung Sasongko",
+                    "email": "agoenxz21@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Library CI4 untuk menyajikan data pada jQuery DataTable",
+            "keywords": [
+                "CI4",
+                "codeigniter4",
+                "datatable",
+                "library"
+            ],
+            "support": {
+                "issues": "https://github.com/agoenxz2186/datatable/issues",
+                "source": "https://github.com/agoenxz2186/datatable/tree/v1.0.2"
+            },
+            "time": "2022-10-05T04:41:31+00:00"
+        },
         {
             "name": "codeigniter4/framework",
             "version": "v4.2.7",
@@ -142,32 +190,32 @@
         },
         {
             "name": "laminas/laminas-escaper",
-            "version": "2.10.0",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-escaper.git",
-                "reference": "58af67282db37d24e584a837a94ee55b9c7552be"
+                "reference": "ee7a4c37bf3d0e8c03635d5bddb5bb3184ead490"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-escaper/zipball/58af67282db37d24e584a837a94ee55b9c7552be",
-                "reference": "58af67282db37d24e584a837a94ee55b9c7552be",
+                "url": "https://api.github.com/repos/laminas/laminas-escaper/zipball/ee7a4c37bf3d0e8c03635d5bddb5bb3184ead490",
+                "reference": "ee7a4c37bf3d0e8c03635d5bddb5bb3184ead490",
                 "shasum": ""
             },
             "require": {
                 "ext-ctype": "*",
                 "ext-mbstring": "*",
-                "php": "^7.4 || ~8.0.0 || ~8.1.0"
+                "php": "^7.4 || ~8.0.0 || ~8.1.0 || ~8.2.0"
             },
             "conflict": {
                 "zendframework/zend-escaper": "*"
             },
             "require-dev": {
                 "infection/infection": "^0.26.6",
-                "laminas/laminas-coding-standard": "~2.3.0",
+                "laminas/laminas-coding-standard": "~2.4.0",
                 "maglnet/composer-require-checker": "^3.8.0",
                 "phpunit/phpunit": "^9.5.18",
-                "psalm/plugin-phpunit": "^0.16.1",
+                "psalm/plugin-phpunit": "^0.17.0",
                 "vimeo/psalm": "^4.22.0"
             },
             "type": "library",
@@ -200,7 +248,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2022-03-08T20:15:36+00:00"
+            "time": "2022-10-10T10:11:09+00:00"
         },
         {
             "name": "psr/log",
