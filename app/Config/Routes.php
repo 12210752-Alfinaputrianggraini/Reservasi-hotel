@@ -66,6 +66,14 @@ $routes->group('metodebayar', function(RouteCollection $routes){
     $routes->get('all', 'MetodebayarController::all');
 });
 
+$routes->group('tipetarif', function(RouteCollection $routes){
+    $routes->get('/', 'TipetarifController::index');
+    $routes->post('/', 'TipetarifController::store');
+    $routes->patch('/', 'TipetarifController::update');
+    $routes->delete('/', 'TipetarifController::delete');
+    $routes->get('(:num)', 'TipetarifController::show/$1');
+    $routes->get('all', 'TipetarifController::all');
+});
 
 /*
  * --------------------------------------------------------------------
