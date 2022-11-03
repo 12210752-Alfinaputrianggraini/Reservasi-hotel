@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Controllers\Home;
 use CodeIgniter\Router\RouteCollection;
 
 // Create a new instance of our RouteCollection class.
@@ -23,6 +24,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
+// $routes->post('/home/simpan', Home::class);
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
@@ -73,6 +75,15 @@ $routes->group('tipetarif', function(RouteCollection $routes){
     $routes->delete('/', 'TipetarifController::delete');
     $routes->get('(:num)', 'TipetarifController::show/$1');
     $routes->get('all', 'TipetarifController::all');
+});
+
+$routes->group('tipetarif', function(RouteCollection $routes){
+    $routes->get('/', 'KamartipeController::index');
+    $routes->post('/', 'KamartipeController::store');
+    $routes->patch('/', 'KamartipeController::update');
+    $routes->delete('/', 'KamartipeController::delete');
+    $routes->get('(:num)', 'KamartipeController::show/$1');
+    $routes->get('all', 'KamartipeController::all');
 });
 
 /*
