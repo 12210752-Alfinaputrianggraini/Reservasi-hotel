@@ -86,6 +86,17 @@ $routes->group('tipetarif', function(RouteCollection $routes){
     $routes->get('all', 'KamartipeController::all');
 });
 
+$routes->group('kamartarif', function(RouteCollection $routes){
+    $routes->get('/', 'KamartarifController::index');
+    $routes->post('/', 'KamartarifController::store');
+    $routes->patch('/', 'KamartarifController::update');
+    $routes->delete('/', 'KamartarifController::delete');
+    $routes->get('(:num)', 'KamartarifController::show/$1');
+    $routes->get('all', 'KamartarifController::all');
+    
+
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
