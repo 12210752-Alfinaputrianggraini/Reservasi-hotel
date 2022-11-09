@@ -77,7 +77,7 @@ $routes->group('tipetarif', function(RouteCollection $routes){
     $routes->get('all', 'TipetarifController::all');
 });
 
-$routes->group('tipetarif', function(RouteCollection $routes){
+$routes->group('kamartarif', function(RouteCollection $routes){
     $routes->get('/', 'KamartipeController::index');
     $routes->post('/', 'KamartipeController::store');
     $routes->patch('/', 'KamartipeController::update');
@@ -86,23 +86,18 @@ $routes->group('tipetarif', function(RouteCollection $routes){
     $routes->get('all', 'KamartipeController::all');
 });
 
-$routes->group('kamartarif', function(RouteCollection $routes){
-    $routes->get('/', 'KamartarifController::index');
-    $routes->post('/', 'KamartarifController::store');
-    $routes->patch('/', 'KamartarifController::update');
-    $routes->delete('/', 'KamartarifController::delete');
-    $routes->get('(:num)', 'KamartarifController::show/$1');
-    $routes->get('all', 'KamartarifController::all');
+$routes->group('kamar', function(RouteCollection $routes){
+    $routes->get('/', 'KamarController::index');
+    $routes->post('/', 'KamarController::store');
+    $routes->patch('/', 'KamarController::update');
+    $routes->delete('/', 'KamarController::delete');
+    $routes->get('(:num)', 'KamarController::show/$1');
+    $routes->get('all', 'KamarController::all');
 });
 
-$routes->group('kamarstatus', function(RouteCollection $routes){
-    $routes->get('/', 'KamarstatusController::index');
-    $routes->post('/', 'KamarstatusController::store');
-    $routes->patch('/', 'KamarstatusController::update');
-    $routes->delete('/', 'KamarstatusController::delete');
-    $routes->get('(:num)', 'KamarstatusController::show/$1');
-    $routes->get('all', 'KamarstatusController::all');
-});
+
+
+
 
 /*
  * --------------------------------------------------------------------
