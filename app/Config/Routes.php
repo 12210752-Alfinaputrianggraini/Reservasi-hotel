@@ -93,8 +93,15 @@ $routes->group('kamartarif', function(RouteCollection $routes){
     $routes->delete('/', 'KamartarifController::delete');
     $routes->get('(:num)', 'KamartarifController::show/$1');
     $routes->get('all', 'KamartarifController::all');
-    
+});
 
+$routes->group('kamarstatus', function(RouteCollection $routes){
+    $routes->get('/', 'KamarstatusController::index');
+    $routes->post('/', 'KamarstatusController::store');
+    $routes->patch('/', 'KamarstatusController::update');
+    $routes->delete('/', 'KamarstatusController::delete');
+    $routes->get('(:num)', 'KamarstatusController::show/$1');
+    $routes->get('all', 'KamarstatusController::all');
 });
 
 /*
