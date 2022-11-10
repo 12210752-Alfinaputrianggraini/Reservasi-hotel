@@ -14,13 +14,13 @@ crossorigin="anonymous"></script>
 <div class="container">
 <button class="float-end btn-sm btn-primary" id="btn-tambah">Tambah</button>
 
-<table id='table-kamartarif' class="datatable table table-bordered">
+<table id='table-kamar' class="datatable table table-bordered">
     <thead>
         <tr>
             <th>id</th>
-            <th>tarif</th>
-            <th>tanggal mulai</th>
-            <th>tanggal selesai</th>
+            <th>Lantai</th>
+            <th>nomor</th>
+            <th>deskripsi</th>
         </tr>
     </thead>
 </table>
@@ -30,24 +30,24 @@ crossorigin="anonymous"></script>
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">From kamar Tarif Hotel</h5>
+            <h5 class="modal-title">From Kamar Hotel</h5>
             <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-            <from id="formkamartarif" method="post" action="<?=base_url('kamartarif')?>">
+            <from id="formkamar" method="post" action="<?=base_url('kamar')?>">
                 <input type="hidden" name="id" />
                 <input type="hidden" name="_method"/>
                 <div class="mb-3">
-                    <label class="form-label">Tarif</label>
-                    <input type="text" name="tarif" class="form-control" />
+                    <label class="form-label">lantai</label>
+                    <input type="text" name="lantai" class="form-control" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">tanggal mulai</label>
-                    <input type="text" name="tgl_mulai" class="form-control" />
+                    <label class="form-label">nomor</label>
+                    <input type="text" name="nomor" class="form-control" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">tanggal selesai</label>
-                    <input type="text" name="tgl_selesai" class="form-control" />
+                    <label class="form-label">deskripsi</label>
+                    <input type="text" name="deskripsi" class="form-control" />
                 </div>
             </from>
         </div>
@@ -60,7 +60,7 @@ crossorigin="anonymous"></script>
 
 <script>
 $(document).ready(function(){
-    $('form#formkamartarif').submitAjax({
+    $('form#formkamar').submitAjax({
         pre:()=>{
             $('button#btn-kirim').hide();
         },
@@ -69,50 +69,50 @@ $(document).ready(function(){
         },
         success:(response, status)=>{
             $("#modalForm").modal('hide');
-            $("table#table-kamartarif").DataTable().ajax.reload();
+            $("table#table-kamar").DataTable().ajax.reload();
         },
         error:  (xhr, status)=>{
             alert('Maaf, data pengguna gagal direkam');
         }
     })
     $('button#btn-kirim').on('click', function(){
-        $('form#formkamartarif').submit();
+        $('form#formkamar').submit();
     });
     $('button#btn-tambah').on('click', function(){
         $('#modalForm').modal('show');
-        $('form#formkamartarif').trigger('reset');
+        $('form#formkamar').trigger('reset');
         $('input[name=_method').val('');
     });
 
-    $('table#table-kamartarif').on('click', 'btn-edit', function(){
+    $('table#table-kamar').on('click', 'btn-edit', function(){
         let id = $(this).data('id');
         let baseurl = "<?=base_url()?>";
-        $.get(`${baseurl}kamartarif/${id}`).done((e)=>{
+        $.get(`${baseurl}kamar/${id}`).done((e)=>{
             $('input[name=id]').val(e.id);
-            $('input[name=tarif]').val(e.tarif);
-            $('input[name=tanggal mulai]').val(e.tgl_mulai);
-            $('input[name=tanggal selesai]').val(e.tgl_selesai);
+            $('input[name=lantai]').val(e.lantai);
+            $('input[name=nomor]').val(e.nomor);
+            $('input[name=deskripsi]').val(e.deskripsi);
         });
     });
 
-    $('table#table-kamartarif').on('click', '.btn-hapus', function(){
+    $('table#table-kamar').on('click', '.btn-hapus', function(){
         let konfirmasi = confirm('Data pelanggan akan dihapus, mau dilanjutkan?');
 
         if(konfirmasi === true){
             let _id = $(this).data('id');
             let baseurl = "<?=base_url()?>";
 
-            $.post(`${baseurl}/kamartarif`, {id:_id, _method:'delete'}).done(function(e){
-                $('table#table-kamartarif').DataTable().ajax.reload();
+            $.post(`${baseurl}/kamar`, {id:_id, _method:'delete'}).done(function(e){
+                $('table#table-kamar').DataTable().ajax.reload();
             });
         }
     });
 
-    $('table#table-kamartarif').DataTable({
+    $('table#table-kamar').DataTable({
         processing: true,
         serverSide: true,
         ajax:{
-            url: "<?=base_url('kamartarif/all')?>",
+            url: "<?=base_url('kamar/all')?>",
             method: 'GET'
         },
         columns: [
@@ -122,9 +122,9 @@ $(document).ready(function(){
               }
             },
             // {data: 'id'},
-            { data: 'tarif' },
-            { data: 'tgl_mulai' },
-            { data: 'tgl_selesai' },
+            { data: 'lantai' },
+            { data: 'nomor' },
+            { data: 'deskripsi' },
             { data: 'id', 
               render: (data, type, meta, row)=>{
                 var  btnEdit = `<button class='btn-edit' data-id='${data}'> Edit </button>`;
