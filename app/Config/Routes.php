@@ -86,6 +86,50 @@ $routes->group('tipetarif', function(RouteCollection $routes){
     $routes->get('all', 'KamartipeController::all');
 });
 
+$routes->group('negara', function(RouteCollection $routes){
+    $routes->get('/', 'NegaraController::index');
+    $routes->post('/', 'NegaraController::store');
+    $routes->patch('/', 'NegaraController::update');
+    $routes->delete('/', 'NegaraController::delete');
+    $routes->get('(:num)', 'NegaraController::show/$1');
+    $routes->get('all', 'NegaraController::all');
+});
+
+$routes->group('tamu', function(RouteCollection $routes){
+    $routes->get('/', 'TamuController::index');
+    $routes->post('/', 'TamuController::store');
+    $routes->patch('/', 'TamuController::update');
+    $routes->delete('/', 'TamuController::delete');
+    $routes->get('(:num)', 'TamuController::show/$1');
+    $routes->get('all', 'TamuController::all');
+});
+
+$routes->group('kamardipesan', function(RouteCollection $routes){
+    $routes->get('/', 'KamarDipesanController::index');
+    $routes->post('/', 'KamarDipesanController::store');
+    $routes->patch('/', 'KamarDipesanController::update');
+    $routes->delete('/', 'KamarDipesanController::delete');
+    $routes->get('(:num)', 'KamarDipesanController::show/$1');
+    $routes->get('all', 'KamarDipesanController::all');
+});
+
+$routes->group('pemesanan', function(RouteCollection $routes){
+    $routes->get('/', 'PemesananController::index');
+    $routes->post('/', 'PemesananController::store');
+    $routes->patch('/', 'PemesananController::update');
+    $routes->delete('/', 'PemesananController::delete');
+    $routes->get('(:num)', 'PemesananController::show/$1');
+    $routes->get('all', 'PemesananController::all');
+});
+
+$routes->group('pembayaran', function(RouteCollection $routes){
+    $routes->get('/', 'PembayaranController::index');
+    $routes->post('/', 'PembayaranController::store');
+    $routes->patch('/', 'PembayaranController::update');
+    $routes->delete('/', 'PembayaranController::delete');
+    $routes->get('(:num)', 'PembayaranController::show/$1');
+    $routes->get('all', 'PembayaranController::all');
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing
