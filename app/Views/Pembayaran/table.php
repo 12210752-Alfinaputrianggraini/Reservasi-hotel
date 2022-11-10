@@ -14,7 +14,7 @@
 <div class="container">
 <button class="float-end btn-sm btn-primary" id="btn-tambah">Tambah</button>
 
-<table id='table-pemesanan' class="datatable table table-bordered">
+<table id='table-pembayaran' class="datatable table table-bordered">
     <thead>
         <tr>
             <th>tgl</th>
@@ -23,6 +23,7 @@
             <th>nama_pembayar</th>
             <th>metodebayar_id</th>
             <th>pengguna_id</th>
+            <th>aksi</th>
         </tr>
     </thead>
 </table>
@@ -32,23 +33,19 @@
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">From Pembayaran</h5>
+            <h5 class="modal-title">From Pembayaran Hotel</h5>
             <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-            <from id="formpembayaran" method="post" action="<?=base_url('tamu')?>">
+            <from id="formpembayaran" method="post" action="<?=base_url('pembayaran')?>">
                 <input type="hidden" name="id" />
                 <input type="hidden" name="_method"/>
-                <div class="mb-3">
-                    <label class="form-label"></label>
-                    <input type="text" name="pemesanan" class="form-control" />
-                </div>
                 <div class="mb-3">
                     <label class="form-label">Tanggal</label>
                     <input type="text" name="tgl" class="form-control" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Tangihan</label>
+                    <label class="form-label">Tagihan</label>
                     <input type="text" name="tagihan" class="form-control" />
                 </div>
                 <div class="mb-3">
@@ -61,19 +58,11 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Metode Bayar</label>
-                    <input type="text" name="metodebayar_id" class="form-control" />
+                    <input type="text" name="metode_bayar" class="form-control" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Pengguna id</label>
                     <input type="text" name="pengguna_id" class="form-control" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Aktif</label>
-                    <select name="gender" class="form-control">
-                        <option>Pilih Aktif</option>
-                        <option value="Y">Ya</option>
-                        <option value="T">Tidak</option>
-                    </select>
                 </div>
             </from>
         </div>
@@ -114,7 +103,7 @@ $(document).ready(function(){
         let id = $(this).data('id');
         let baseurl = "<?=base_url()?>";
         $.get(`${baseurl}pembayaran/${id}`).done((e)=>{
-            $('input[name=tgl]').val(e.kamar_id);
+            $('input[name=tgl]').val(e.tgl);
             $('input[name=tagihan]').val(e.tagihan);
             $('input[name=dibayar]').val(e.dibayar);
             $('input[name=nama_pembayar]').val(e.nama_pembayar);

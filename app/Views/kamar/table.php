@@ -1,28 +1,26 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet" crossorigin="anonymous">
+rel="stylesheet"  crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-        crossorigin="anomymouse"></script>
+        rossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-    crossorigin="anonymous"></script>
+crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-    crossorigin="anonymous"></script>
+crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/gh/agoenxz2186/submitAjax@develop/submit_ajax.js"
-    ></script>
-<link href="cdn.datatable.net/1.12.1/css/jquery.dataTable.min.css" rel="styleseet">
-<script src="//cdn.datatable.net/1.12.1/js./jquery.dataTable.min.js"></script>
+></script>
+<link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 <div class="container">
 <button class="float-end btn-sm btn-primary" id="btn-tambah">Tambah</button>
 
-<table id='table-pemesanan' class="datatable table table-bordered">
+<table id='table-kamar' class="datatable table table-bordered">
     <thead>
         <tr>
-            <th>kamar_id</th>
-            <th>tgl_mulai</th>
-            <th>tgl_selesai</th>
-            <th>pemesananstatus_id</th>
-            <th>tamu_id</th>
-            <th>aksi</th>
+            <th>id</th>
+            <th>Lantai</th>
+            <th>nomor</th>
+            <th>deskripsi</th>
         </tr>
     </thead>
 </table>
@@ -32,32 +30,24 @@
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">From Pemesanan</h5>
+            <h5 class="modal-title">From Kamar Hotel</h5>
             <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-            <from id="formpemesanan" method="post" action="<?=base_url('pemesanan')?>">
+            <from id="formkamar" method="post" action="<?=base_url('kamar')?>">
                 <input type="hidden" name="id" />
                 <input type="hidden" name="_method"/>
                 <div class="mb-3">
-                    <label class="form-label">Kamar id</label>
-                    <input type="text" name="kamar_id" class="form-control" />
+                    <label class="form-label">lantai</label>
+                    <input type="text" name="lantai" class="form-control" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Tanggal Mulai</label>
-                    <input type="text" name="tgl_mulai" class="form-control" />
+                    <label class="form-label">nomor</label>
+                    <input type="text" name="nomor" class="form-control" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Tanggal Selesai</label>
-                    <input type="text" name="tgl_selesai" class="form-control" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Pemesanan Status</label>
-                    <input type="text" name="pemesananstatus_id" class="form-control" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Tamu id</label>
-                    <input type="text" name="tamu_id" class="form-control" />
+                    <label class="form-label">deskripsi</label>
+                    <input type="text" name="deskripsi" class="form-control" />
                 </div>
             </from>
         </div>
@@ -70,7 +60,7 @@
 
 <script>
 $(document).ready(function(){
-    $('form#formpemesanan').submitAjax({
+    $('form#formkamar').submitAjax({
         pre:()=>{
             $('button#btn-kirim').hide();
         },
@@ -79,51 +69,50 @@ $(document).ready(function(){
         },
         success:(response, status)=>{
             $("#modalForm").modal('hide');
-            $("table#table-pemesanan").DataTable().ajax.reload();
+            $("table#table-kamar").DataTable().ajax.reload();
         },
         error:  (xhr, status)=>{
             alert('Maaf, data pengguna gagal direkam');
         }
     })
     $('button#btn-kirim').on('click', function(){
-        $('form#formpemesanan').submit();
+        $('form#formkamar').submit();
     });
     $('button#btn-tambah').on('click', function(){
         $('#modalForm').modal('show');
-        $('form#formpemesanan').trigger('reset');
+        $('form#formkamar').trigger('reset');
         $('input[name=_method').val('');
     });
 
-    $('table#table-pemesanan').on('click', 'btn-edit', function(){
+    $('table#table-kamar').on('click', 'btn-edit', function(){
         let id = $(this).data('id');
         let baseurl = "<?=base_url()?>";
-        $.get(`${baseurl}pemesanan/${id}`).done((e)=>{
-            $('input[name=kamar_id]').val(e.kamar_id);
-            $('input[name=tgl_mulai]').val(e.tgl_mulai);
-            $('input[name=tgl_selesai]').val(e.tgl_selesai);
-            $('input[name=pemesananstatus]').val(e.pemesananstatus);
-            $('input[name=tamu_id]').val(e.tamu_id);
+        $.get(`${baseurl}kamar/${id}`).done((e)=>{
+            $('input[name=id]').val(e.id);
+            $('input[name=lantai]').val(e.lantai);
+            $('input[name=nomor]').val(e.nomor);
+            $('input[name=deskripsi]').val(e.deskripsi);
         });
     });
 
-    $('table#table-pemesanan').on('click', '.btn-hapus', function(){
+    $('table#table-kamar').on('click', '.btn-hapus', function(){
         let konfirmasi = confirm('Data pelanggan akan dihapus, mau dilanjutkan?');
 
         if(konfirmasi === true){
             let _id = $(this).data('id');
             let baseurl = "<?=base_url()?>";
 
-            $.post(`${baseurl}/pemesanan`, {id:_id, _method:'delete'}).done(function(e){
-                $('table#table-pemsanan').DataTable().ajax.reload();
+            $.post(`${baseurl}/kamar`, {id:_id, _method:'delete'}).done(function(e){
+                $('table#table-kamar').DataTable().ajax.reload();
             });
         }
     });
 
-    $('table#table-pemesanan').DataTable({
+    $('table#table-kamar').DataTable({
         processing: true,
         serverSide: true,
         ajax:{
-            url: "<?=base_url('pemesanan/all')?>",
+            url: "<?=base_url('kamar/all')?>",
             method: 'GET'
         },
         columns: [
@@ -133,11 +122,9 @@ $(document).ready(function(){
               }
             },
             // {data: 'id'},
-            { data: 'kamar_id' },
-            { data: 'tgl_mulai' },
-            { data: 'tgl_selesai' },
-            { data: 'pemesananstatus_id' },
-            { data: 'tamu_id' },
+            { data: 'lantai' },
+            { data: 'nomor' },
+            { data: 'deskripsi' },
             { data: 'id', 
               render: (data, type, meta, row)=>{
                 var  btnEdit = `<button class='btn-edit' data-id='${data}'> Edit </button>`;

@@ -17,8 +17,8 @@
 <table id='table-tamu' class="datatable table table-bordered">
     <thead>
         <tr>
-            <th>namadepan</th>
-            <th>namabelakang</th>
+            <th>nama_depan</th>
+            <th>nama_belakang</th>
             <th>gender</th>
             <th>alamat</th>
             <th>kota</th>
@@ -26,7 +26,7 @@
             <th>nohp</th>
             <th>email</th>
             <th>sandi</th>
-            <th>tokenreset</th>
+            <th>token_reset</th>
             <th>aksi</th>
         </tr>
     </thead>
@@ -76,18 +76,6 @@
                     <label class="form-label">Email</label>
                     <input type="text" name="email" class="form-control" />
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Sandi</label>
-                    <input type="text" name="sandi" class="form-control" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Aktif</label>
-                    <select name="gender" class="form-control">
-                        <option>Pilih Aktif</option>
-                        <option value="Y">Ya</option>
-                        <option value="T">Tidak</option>
-                    </select>
-                </div>
             </from>
         </div>
         <div class="modal-footer">
@@ -128,16 +116,14 @@ $(document).ready(function(){
         let baseurl = "<?=base_url()?>";
         $.get(`${baseurl}tipetarif/${id}`).done((e)=>{
             $('input[name=id]').val(e.id);
-            $('input[name=namadepan]').val(e.namadepan);
-            $('input[name=namabelakang]').val(e.namabelakang);
+            $('input[name=nama_depan]').val(e.nama_depan);
+            $('input[name=nama_belakang]').val(e.nama_belakang);
             $('input[name=gender]').val(e.gender);
             $('input[name=alamat]').val(e.alamat);
             $('input[name=kota]').val(e.kota);
             $('input[name=negara]').val(e.negara);
             $('input[name=nohp]').val(e.nohp);
             $('input[name=email]').val(e.email);
-            $('input[name=sandi]').val(e.sandi);
-            $('input[name=aktif]').val(e.aktif);
         });
     });
 
@@ -168,25 +154,14 @@ $(document).ready(function(){
               }
             },
             // {data: 'id'},
-            { data: 'namadepan' },
-            { data: 'namabelakang' },
+            { data: 'nama_depan' },
+            { data: 'nama_belakang' },
             { data: 'gender' },
             { data: 'alamat' },
             { data: 'kota' },
             { data: 'negara' },
             { data: 'nohp' },
             { data: 'email' },
-            { data: 'sandi' },
-            { data: 'aktif',
-              render: (data, type, meta, row)=>{
-                if( data === 'Y' ){
-                    return 'Ya';
-                }else if( data === 'T' ){
-                    return 'Tidak';
-                }
-                return data;
-              }
-            },
             { data: 'id', 
               render: (data, type, meta, row)=>{
                 var  btnEdit = `<button class='btn-edit' data-id='${data}'> Edit </button>`;

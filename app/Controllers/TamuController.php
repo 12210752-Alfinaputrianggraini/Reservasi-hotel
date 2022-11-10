@@ -16,7 +16,7 @@ class TamuController extends BaseController
     }
     public function all(){
         $pm = new TamuModel();
-        $pm->select('id, nama_depan, nama_belakang, gender, alamat, kota, negara, nohp, email, sandi');
+        $pm->select('id, nama_depan, nama_belakang, gender, alamat, kota, negara_id, nohp, email, sandi', 'token_reset');
 
         return (new Datatable( $pm ))
                 ->setFieldFilter(['nama_depan, nama_belakang'])
@@ -41,7 +41,8 @@ class TamuController extends BaseController
             'negara'         => $this->request->getVar('negara'),
             'nohp'         => $this->request->getVar('nohp'),
             'email'         => $this->request->getVar('email'),
-            'sandi'         => $this->request->getVar('sandi'),
+            'sandi'         => password_hash($sandi, PASSWORD_BCRYPT),
+            'token_reset'         => $this->request->getVar('email'),
         ]);
         return $this->response->setJSON(['id' => $id])
                               ->setJSON( intval($id) > 0 ? 200 : 406 );
@@ -62,7 +63,7 @@ class TamuController extends BaseController
             'negara'         => $this->request->getVar('negara'),
             'nohp'         => $this->request->getVar('nohp'),
             'email'         => $this->request->getVar('email'),
-            'sandi'         => $this->request->getVar('sandi'),
+            'token_reset'         => $this->request->getVar('token_reset'),
         ]);
         return $this->response->setJSON(['result'=>$hasil]);
     }

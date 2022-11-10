@@ -12,9 +12,9 @@ class KamartarifSeeder extends Seeder
         $r = (new KamartarifModel())->insert([
             'kamartipe_id' => 'deluxe',
             'tarif' => 2000000,
-            'tgl_mulai' => '15 oktober 2022',
-            'tgl_selesai' => '17 oktober 2022',
-            'tipetarif_id' => 4000000,
+            'tgl_mulai' => '2022-11-02',
+            'tgl_selesai' => '2022-11-05',
+            'tipetarif_id' => 'normal',
         ]);
         echo "hasil id = $r";
     }

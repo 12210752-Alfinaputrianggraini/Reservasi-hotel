@@ -5,7 +5,6 @@ namespace App\Controllers;
 use Agoenxz21\Datatables\Datatable;
 use App\Controllers\BaseController;
 use App\Models\PemesananModel;
-use App\Models\TipetarifModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class PemesananController extends BaseController
@@ -16,7 +15,7 @@ class PemesananController extends BaseController
     }
     public function all(){
         $pm = new PemesananModel();
-        $pm->select('kamar_id, tgl_mulai, tgl_selesai, pemesananstatus, tamu_id');
+        $pm->select('kamar_id, tgl_mulai, tgl_selesai, pemesananstatus_id, tamu_id');
 
         return (new Datatable( $pm ))
                 ->setFieldFilter(['kamar_id', 'tgl_mulai'])
@@ -30,17 +29,14 @@ class PemesananController extends BaseController
     }
     public function store(){
         $pm     = new PemesananModel();
-        $sandi  = $this->request->getVar('sandi');
         
         $id = $pm->insert([
             'kamar_id'          => $this->request->getVar('kamar_id'),
             'tgl_mulai'    => $this->request->getVar('tgl_mulai'),
             'tgl_selesai'        => $this->request->getVar('tgl_selesai'),
-            'pemesananstatus'         => $this->request->getVar('pemesanansatus'),
+            'pemesananstatus_id'         => $this->request->getVar('pemesanansatus_id'),
             'tamu_id'         => $this->request->getVar('tamu_id'),
         ]);
-        return $this->response->setJSON(['id' => $id])
-                              ->setJSON( intval($id) > 0 ? 200 : 406 );
     }
     public function update(){
         $pm     = new PemesananModel();
@@ -53,7 +49,7 @@ class PemesananController extends BaseController
             'kamar_id'          => $this->request->getVar('kamar_id'),
             'tgl_mulai'    => $this->request->getVar('tgl_mulai'),
             'tgl_selesai'        => $this->request->getVar('tgl_selesai'),
-            'pemesananstatus'         => $this->request->getVar('pemesanansatus'),
+            'pemesananstatus_id'         => $this->request->getVar('pemesanansatus_ids'),
             'tamu_id'         => $this->request->getVar('tamu_id'),
         ]);
         return $this->response->setJSON(['result'=>$hasil]);
