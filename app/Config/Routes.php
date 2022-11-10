@@ -95,6 +95,15 @@ $routes->group('kamar', function(RouteCollection $routes){
     $routes->get('all', 'KamarController::all');
 });
 
+$routes->group('pemesananstatus', function(RouteCollection $routes){
+    $routes->get('/', 'PemesananstatusController::index');
+    $routes->post('/', 'PemesananstatusController::store');
+    $routes->patch('/', 'PemesananstatusController::update');
+    $routes->delete('/', 'PemesananstatusController::delete');
+    $routes->get('(:num)', 'PemesananstatusController::show/$1');
+    $routes->get('all', 'PemesananstatusController::all');
+});
+
 
 
 
