@@ -11,14 +11,14 @@ class MetodebayarController extends BaseController
 {
     public function index()
     {
-        return view('Metodebayar/table');
+        return view('metodebayar/table');
     }
     public function all(){
         $pm = new MetodebayarModel();
         $pm->select('id, metode, aktif');
 
         return (new Datatable( $pm ))
-                ->setFieldFilter(['metode', 'aktif'])
+                ->setFieldFilter(['metode'])
                 ->draw();
     }
     public function show($id){

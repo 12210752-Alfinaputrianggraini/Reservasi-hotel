@@ -24,6 +24,8 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
+$routes->setAutoRoute(true);
+
 // $routes->post('/home/simpan', Home::class);
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.
@@ -50,7 +52,7 @@ $routes->group('login', function(RouteCollection $routes){
     
 });
 
-$routes->group('pengguna', function(RouteCollection $routes){
+$routes->group('pengguna', ['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'PenggunaController::index');
     $routes->post('/', 'PenggunaController::store');
     $routes->patch('/', 'PenggunaController::update');
@@ -77,7 +79,7 @@ $routes->group('tipetarif', function(RouteCollection $routes){
     $routes->get('all', 'TipetarifController::all');
 });
 
-$routes->group('tipetarif', function(RouteCollection $routes){
+$routes->group('kamartipe', function(RouteCollection $routes){
     $routes->get('/', 'KamartipeController::index');
     $routes->post('/', 'KamartipeController::store');
     $routes->patch('/', 'KamartipeController::update');

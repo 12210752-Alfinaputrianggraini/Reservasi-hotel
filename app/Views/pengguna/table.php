@@ -24,13 +24,11 @@ crossorigin="anonymous"></script>
             <th>gender</th>
             <th>alamat</th>
             <th>kota</th>
-            <th>tgl_lhr</th>
-            <th>notelp</th>
+            <th>tgl_lhr</th> 
+            <th>No Telpon</th>
             <th>nohp</th>
             <th>email</th>
-            <th>level</th>
-            <th>foto</th>
-            <th>token_reset</th>
+            <th>level</th> 
             <th>aksi</th>
         </tr>
     </thead>
@@ -77,10 +75,6 @@ crossorigin="anonymous"></script>
                     <input type="date" name="tgl_lhr" class="form-control" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Nomor Telpon</label>
-                    <input type="int" name="no_telp" class="form-control" />
-                </div>
-                <div class="mb-3">
                     <label class="form-label">Nomor HP</label>
                     <input type="int" name="nohp" class="form-control" />
                 </div>
@@ -98,18 +92,6 @@ crossorigin="anonymous"></script>
                         <option value="B">Room Boy</option>
                     </select>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Foto</label>
-                    <input type="text" name="foto" class="form-control" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Sandi</label>
-                    <input type="password" name="sandi" class="form-control" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Token Reset</label>
-                    <input type="text" name="token_reset" class="form-control" />
-                </div>
 
             </from>
         </div>
@@ -121,7 +103,7 @@ crossorigin="anonymous"></script>
 </div>
 
 <script>
-$(document)-ready(function(){
+$(document).ready(function(){
     $('form#formPengguna').submitAjax({
         pre:()=>{
             $('button#btn-kirim').hide();
@@ -161,8 +143,6 @@ $(document)-ready(function(){
             $('input[name=nohp]').val(e.nohp);
             $('input[name=email]').val(e.email);
             $('input[name=level]').val(e.level);
-            $('input[name=foto]').val(e.foto);
-            $('input[name=token_reset]').val(e.token_reset);
             $('#modalForm').modal('show');
             $('input[name=_method]').val('patch');
         });
@@ -188,7 +168,7 @@ $(document)-ready(function(){
             url: "<?=base_url('pengguna/all')?>",
             method: 'GET'
         },
-        colums: [
+        columns: [
             { data: 'id', sortable:false, searchable:false, 
               render: (data,type,row,meta)=>{
                 return meta.settings._iDisplayStart + 1;
@@ -210,8 +190,8 @@ $(document)-ready(function(){
             { data: 'alamat' },
             { data: 'kota' },
             { data: 'tgl_lhr' },
-            { data: 'no_telp' },
             { data: 'nohp' },
+            { data: 'notelp' },
             { data: 'email' },
             { data: 'level', 
               render: (data, type, meta, row)=>{
@@ -226,10 +206,7 @@ $(document)-ready(function(){
                 }
                 return data;
               }
-            },
-            { data: 'foto' },
-            { data: 'sandi' },
-            { data: 'token_reset' },
+            }, 
             { data: 'id', 
               render: (data, type, meta, row)=>{
                 var  btnEdit = `<button class='btn-edit' data-id='${data}'> Edit </button>`;

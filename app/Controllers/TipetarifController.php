@@ -11,24 +11,25 @@ class TipetarifController extends BaseController
 {
     public function index()
     {
-        return view('Tipetarif/table');
+        return view('tipetarif/table');
     }
     public function all(){
         $pm = new TipetarifModel();
         $pm->select('id, tipe, keterangan, urutan, aktif');
 
         return (new Datatable( $pm ))
-                ->setFieldFilter(['tipe', 'keterangan', 'urutan', 'aktif'])
+                ->setFieldFilter(['tipe', 'keterangan'])
                 ->draw();
     }
     public function show($id){
         $r = (new TipetarifModel())->where('id', $id)->first();
-        if($r == null)throw PageNotFoundException::forPageNotFound();
+        if($r == null) throw PageNotFoundException::forPageNotFound();
 
         return $this->response->setJSON($r);
     }
     public function store(){
         $pm     = new TipetarifModel();
+        $sandi  = $this->request->getVar('sandi');
         
         $id = $pm->insert([
             'tipe'          => $this->request->getVar('tipe'),
@@ -36,13 +37,15 @@ class TipetarifController extends BaseController
             'urutan'        => $this->request->getVar('urutan'),
             'aktif'         => $this->request->getVar('aktif'),
         ]);
+        return $this->response->setJSON(['id' => $id])
+                              ->setJSON( intval($id) > 0 ? 200 : 406 );
     }
     public function update(){
         $pm     = new TipetarifModel();
         $id     = (int)$this->request->getVar('id');
 
-        if($pm->find($id) == null)
-        throw PageNotFoundException::forPageNotFound();
+        if( $pm->find($id) == null )
+            throw PageNotFoundException::forPageNotFound();
 
         $hasil = $pm->update($id, [
             'tipe'    => $this->request->getVar('tipe'),
@@ -56,7 +59,7 @@ class TipetarifController extends BaseController
         $pm     = new TipetarifModel();
         $id     = $this->request->getVar('id');
         $hasil  = $pm->delete($id);
-        return $this->response->setJSON([ 'result'=>$hasil ]);
+        return $this->response->setJSON([ 'result' => $hasil ]);
     }
 }
 

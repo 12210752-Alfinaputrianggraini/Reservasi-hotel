@@ -79,14 +79,14 @@ class PenggunaController extends BaseController
         return redirect()->to('login');
     }
     public function index(){
-        return view('Pengguna/table');
+        return view('pengguna/table');
     }
     public function all(){
         $pm = new PenggunaModel();
-        $pm->select('id, nama_depan, nama_belakang, gender, alamat, kota, tgl_lhr, notelp, email, level, foto, sandi, token_reset');
+        $pm->select('id, nama_depan, nama_belakang, gender, alamat, kota, tgl_lhr, notelp, nohp, email, level, foto');
 
         return (new Datatable( $pm ))
-                ->setFieldFilter(['nama_depan', 'nama_belakang', 'gender', 'alamat', 'kota', 'tgl_lhr', 'notelp', 'email', 'level', 'foto', 'sandi', 'token_reset'])
+                ->setFieldFilter(['nama_depan', 'nama_belakang' ])
                 ->draw();
     }
     public function show($id){

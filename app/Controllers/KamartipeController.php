@@ -11,14 +11,14 @@ class KamartipeController extends BaseController
 {
     public function index()
     {
-        return view('Kamartipe/table');
+        return view('kamartipe/table');
     }
     public function all(){
         $pm = new KamartipeModel();
         $pm->select('id, tipe, keterangan, urutan, aktif', 'gambar');
 
         return (new Datatable( $pm ))
-                ->setFieldFilter(['tipe', 'keterangan', 'urutan', 'aktif', 'gambar'])
+                ->setFieldFilter(['tipe', 'keterangan'])
                 ->draw();
     }
     public function show($id){
