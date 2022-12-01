@@ -49,8 +49,9 @@ $routes->group('login', function(RouteCollection $routes){
     $routes->patch('/', 'PenggunaController::lupaPassword');
     
 });
+$routes->get('/logout', 'PenggunaController::logout');
 
-$routes->group('pengguna', function(RouteCollection $routes){
+$routes->group('pengguna', ['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'PenggunaController::index');
     $routes->post('/', 'PenggunaController::store');
     $routes->patch('/', 'PenggunaController::update');

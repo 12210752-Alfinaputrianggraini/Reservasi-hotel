@@ -49,10 +49,10 @@ class PemesananController extends BaseController
             throw PageNotFoundException::forPageNotFound();
 
         $hasil = $pm->update($id, [
-            'kamar_id'        => $this->request->getVar('kamar_id'),
-            'tgl_mulai'        => $this->request->getVar('tgl_mulai'),
+            'kamar_id'           => $this->request->getVar('kamar_id'),
+            'tgl_mulai'          => $this->request->getVar('tgl_mulai'),
             'tgl_selesai'        => $this->request->getVar('tgl_selesai'),
-            'pemesananstatus_id'         => $this->request->getVar('pemesananstatus_id'),
+            'pemesananstatus_id' => $this->request->getVar('pemesananstatus_id'),
             'tamu_id'        => $this->request->getVar('tamu_id'),
         ]);
         return $this->response->setJSON(['result'=>$hasil]);
