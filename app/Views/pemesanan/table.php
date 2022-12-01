@@ -38,8 +38,8 @@ crossorigin="anonymous"></script>
                 <input type="hidden" name="id" />
                 <input type="hidden" name="_method"/>
                 <div class="mb-3">
-                    <label class="form-label">Id</label>
-                    <input type="text" name="id" class="form-control" />
+                    <label class="form-label">No</label>
+                    <input type="text" name="no" class="form-control" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Tanggal Mulai</label>
@@ -119,7 +119,7 @@ $(document).ready(function(){
         columns: [
             { data: 'id', sortable:false, searchable:false, 
               render: (data,type,row,meta)=>{
-                return meta.settings._iDisplayStart + 1;
+                return meta.settings._iDisplayStart + meta.row + 1;
               }
             },
             // {data: 'id'},

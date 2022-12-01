@@ -13,6 +13,10 @@ crossorigin="anonymous"></script>
 <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 <div class="container">
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url(); ?>/logout">Logout</a>
+</li>
+
     <button class="float-end btn-sm btn-primary" id="btn-tambah">Tambah</button>
 
     <table id='table-pelanggan' class="datatable table table-bordered">
@@ -102,10 +106,6 @@ crossorigin="anonymous"></script>
                 <div class="mb-3">
                     <label class="form-label">Foto</label>
                     <input type="text" name="foto" class="form-control" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Sandi</label>
-                    <input type="text" name="sandi" class="form-control" />
                 </div>
 
             </form>

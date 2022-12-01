@@ -32,12 +32,34 @@
                             <label for="sandi" class="from-label">Sandi Sistem</label>
                             <input type="password" name="sandi" class="form-control" id="sandi">
                         </div>
-                        
-                        <a href='pengguna' class="btn btn-primary btn-user btn-block">Login</a>
                     </div>
                 </div>
                 
             </form>
+            
+            <button id='btn-login' class="btn btn-primary btn-user btn-block">Login</button>
         </div>
     </body>
+    <script>
+        
+$(document).ready(function(){
+    $('form#form-login').submitAjax({
+        pre:()=>{
+            $('button#btn-kirim').hide();
+        },
+        pasca:()=>{
+            $('button#btn-kirim').show();
+        },
+        success:(response, status)=>{
+           window.location = "<?=base_url('/pengguna')?>";
+        },
+        error:  (xhr, status)=>{
+            alert('Maaf, informasi pengguna tidak tersedia');
+        }
+    })
+    $('button#btn-login').on('click', function(){
+        $('form#form-login').submit();
+    });
+});
+    </script>
 </html>
