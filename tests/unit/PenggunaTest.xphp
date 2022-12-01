@@ -12,7 +12,7 @@ class PenggunaTest extends CIUnitTestCase{
 
     public function testLogin(){
         $this->call('post', 'login', [
-            'email' => 'desykashalu31@gmail.com',
+            'email' => 'firarahmi3@gmail.com',
             'sandi' => '123456789'
         ])->assertStatus(200);
     }

@@ -12,7 +12,7 @@ class TipetarifSeeder extends Seeder
         $id = (new TipetarifModel())->insert([
             'tipe' => 'normal',
             'keterangan' => 'hari biasa',
-            'urutan' => 'pertama',
+            'urutan' => '1',
             'aktif' => 'Y',
         ]);
         echo "hasil id = $id";

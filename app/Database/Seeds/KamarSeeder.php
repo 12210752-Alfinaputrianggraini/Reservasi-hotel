@@ -10,10 +10,10 @@ class KamarSeeder extends Seeder
     public function run()
     {
         $id = (new KamarModel())->insert([
-            'kamartipe_id' => 'deluxe',
+            'kamartipe_id' => '1',
             'lantai' => 'marmer',
             'nomor' => '401',
-            'kamarstatus_id' => 'siap huni',
+            'kamarstatus_id' => '1',
             'deskripsi' => 'kamar sudah dipersiapakan',
         ]);
         echo "hasil id = $id";

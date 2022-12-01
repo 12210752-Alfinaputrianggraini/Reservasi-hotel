@@ -12,7 +12,7 @@ class KamarstatusSeeder extends Seeder
         $id = (new KamarstatusModel())->insert([
             'status' => 'siap huni',
             'keterangan' => 'kamar sudah disiapkan',
-            'urutan' => '3',
+            'urutan' => '1',
             'aktif' => 'Y',
         ]);
         echo "hasil id = $id";

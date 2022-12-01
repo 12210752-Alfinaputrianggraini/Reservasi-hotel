@@ -10,7 +10,7 @@ class NegaraSeeder extends Seeder
     public function run()
     {
         $id = (new NegaraModel())->insert([
-            'negara' => 'iINDONESIA',
+            'negara' => 'INDONESIA',
         ]);
         echo "hasil id = $id";
     }

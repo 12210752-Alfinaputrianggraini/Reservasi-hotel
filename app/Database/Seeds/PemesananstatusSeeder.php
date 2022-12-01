@@ -11,7 +11,7 @@ class PemesananstatusSeeder extends Seeder
     {
         $id = (new PemesananstatusModel())->insert([
             'status' => 'siap huni',
-            'urutan' => '3',
+            'urutan' => '1',
             'aktif' => 'Y',
         ]);
         echo "hasil id = $id";

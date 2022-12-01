@@ -8,7 +8,6 @@ use App\Models\PenggunaModel;
 use CodeIgniter\Email\Email;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use Config\Email as ConfigEmail;
-use SebastianBergmann\Type\FalseType;
 
 class PenggunaController extends BaseController
 {
@@ -57,7 +56,7 @@ class PenggunaController extends BaseController
         }
 
         $email = new Email(new ConfigEmail());
-        $email->setFrom('priwidal@gmail.com', 'Aplikasi Reservasi Hotel');
+        $email->setFrom('firarahmi3@gmail.com', 'Aplikasi Reservasi Hotel');
         $email->setTo($pengguna['email']);
         $email->setSubject('Reset Sandi Pengguna');
         $email->setMessage("Hallo {$pengguna['nama']} telah meminta reset baru. Reset baru kamu adalah <b>$sandibaru</b>");
@@ -79,14 +78,14 @@ class PenggunaController extends BaseController
         return redirect()->to('login');
     }
     public function index(){
-        return view('Pengguna/table');
+        return view('pengguna/table');
     }
     public function all(){
         $pm = new PenggunaModel();
-        $pm->select('id, nama_depan, nama_belakang, gender, alamat, kota, tgl_lhr, notelp, email, level, foto, sandi, token_reset');
+        $pm->select('id, nama_depan, nama_belakang, gender, alamat, kota, tgl_lhr, notelp, nohp, email, level, foto, sandi, token_reset');
 
         return (new Datatable( $pm ))
-                ->setFieldFilter(['nama_depan', 'nama_belakang', 'gender', 'alamat', 'kota', 'tgl_lhr', 'notelp', 'email', 'level', 'foto', 'sandi', 'token_reset'])
+                ->setFieldFilter(['nama_depan', 'nama_belakang'])
                 ->draw();
     }
     public function show($id){
@@ -106,12 +105,13 @@ class PenggunaController extends BaseController
             'alamat'        => $this->request->getVar('alamat'),
             'kota'          => $this->request->getVar('kota'),
             'tgl_lhr'       => $this->request->getVar('tgl_lhr'),
-            'notelp'        => $this->request->getVar('notelp'),
+            'notelp  '      => $this->request->getVar('notelp'),
+            'nohp  '        => $this->request->getVar('nohp'),
             'email'         => $this->request->getVar('email'),
             'level'         => $this->request->getVar('level'),
-            'foto'          => $this->request->getVar('foto'),
-            'sandi'         => password_hash($sandi, PASSWORD_BCRYPT),
-            'token_reset'   => $this->request->getVar('token_reset'),
+            // 'foto'          => $this->request->getVar('foto'),
+            // 'sandi'         => password_hash($sandi, PASSWORD_BCRYPT),
+            // 'token_reset'   => $this->request->getVar('token_reset'),
         ]);
         return $this->response->setJSON(['id' => $id])
                               ->setStatusCode( intval($id) > 0 ? 200 : 406 );
@@ -131,6 +131,7 @@ class PenggunaController extends BaseController
             'kota'          => $this->request->getVar('kota'),
             'tgl_lhr'       => $this->request->getVar('tgl_lhr'),
             'notelp'        => $this->request->getVar('notelp'),
+            'nohp'          => $this->request->getVar('nohp'),
             'email'         => $this->request->getVar('email'),
             'level'         => $this->request->getVar('level'),
             'foto'          => $this->request->getVar('foto'),
