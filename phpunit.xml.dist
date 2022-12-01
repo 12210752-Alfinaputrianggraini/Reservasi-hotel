@@ -30,6 +30,7 @@
         <testsuite name="App">
             <directory>./tests/unit</directory>
         </testsuite>
+        
     </testsuites>
     <logging>
         <testdoxHtml outputFile="build/logs/testdox.html"/>

@@ -32,8 +32,8 @@
                             <label for="sandi" class="from-label">Sandi Sistem</label>
                             <input type="password" name="sandi" class="form-control" id="sandi">
                         </div>
-
-                        <button type="submit" class="btn btn-primary mb-3">Login</button>
+                        
+                        <a href='pengguna' class="btn btn-primary btn-user btn-block">Login</a>
                     </div>
                 </div>
                 

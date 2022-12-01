@@ -10,14 +10,13 @@ class TamuSeeder extends Seeder
     public function run()
     {
         $id = (new TamuModel())->insert([
-            'nama_depan' => 'tamu',
-            'nama_belakang' => 'tamu',
+            'nama_depan' => 'Listia',
+            'nama_belakang' => 'Priwida',
             'gender' => 'P',
             'alamat' => 'jl.rubini',
             'kota' => 'Singkawang',
-            'negara' => 'Indonesia',
-            'no_telp' => '081234567812',
-            'no_hp' => '08456789012',
+            'negara_id' => '1',
+            'nohp' => '081234567812',
             'email' => 'priwidal@gmail.com',
             'sandi' => password_hash(123456789, PASSWORD_BCRYPT),
         ]);

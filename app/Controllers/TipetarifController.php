@@ -11,11 +11,11 @@ class TipetarifController extends BaseController
 {
     public function index()
     {
-        return view('Tipetarif/table');
+        return view('tipetarif/table');
     }
     public function all(){
         $pm = new TipetarifModel();
-        $pm->select('id, tipe, keterangan, urutan, aktif');
+        $pm->select(' tipe, keterangan, urutan, aktif');
 
         return (new Datatable( $pm ))
                 ->setFieldFilter(['tipe', 'keterangan', 'urutan', 'aktif'])

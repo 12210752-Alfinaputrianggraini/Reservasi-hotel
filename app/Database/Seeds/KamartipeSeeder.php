@@ -12,7 +12,7 @@ class KamartipeSeeder extends Seeder
         $id = (new KamartipeModel())->insert([
             'tipe' => 'deluxe',
             'keterangan' => 'besar',
-            'urutan' => 'pertama',
+            'urutan' => '1',
             'aktif' => 'Y',
             'gambar' => 'foto kamar',
         ]);
