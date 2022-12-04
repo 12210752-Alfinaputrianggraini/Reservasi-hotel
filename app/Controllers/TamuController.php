@@ -11,7 +11,7 @@ class TamuController extends BaseController
 {
     public function index()
     {
-        return view('tamu/table');
+        return view('backend/tamu/table');
     }
     public function all(){
         $pm = new TamuModel();

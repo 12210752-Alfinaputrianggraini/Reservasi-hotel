@@ -11,7 +11,7 @@ class KamarstatusController extends BaseController
 {
     public function index()
     {
-        return view('kamarstatus/table');
+        return view('backend/kamarstatus/table');
     }
     public function all(){
         $pm = new KamarstatusModel();

@@ -11,7 +11,7 @@ class MetodebayarController extends BaseController
 {
     public function index()
     {
-        return view('Metodebayar/table');
+        return view('backend/Metodebayar/table');
     }
     public function all(){
         $pm = new MetodebayarModel();

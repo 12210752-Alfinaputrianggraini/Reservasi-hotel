@@ -34,7 +34,7 @@ class PenggunaController extends BaseController
                     ->setStatusCode(200);
     }
     public function viewLogin(){
-        return view('login');
+        return view('backend/login');
     }
     public function lupaPassword(){
         $email = $this->request->getPost('Email');
@@ -78,7 +78,7 @@ class PenggunaController extends BaseController
         return redirect()->to('login');
     }
     public function index(){
-        return view('pengguna/table');
+        return view('backend/pengguna/table');
     }
     public function all(){
         $pm = new PenggunaModel();
@@ -110,7 +110,7 @@ class PenggunaController extends BaseController
             'email'         => $this->request->getVar('email'),
             'level'         => $this->request->getVar('level'),
             // 'foto'          => $this->request->getVar('foto'),
-            // 'sandi'         => password_hash($sandi, PASSWORD_BCRYPT),
+            'sandi'         => password_hash($sandi, PASSWORD_BCRYPT),
             // 'token_reset'   => $this->request->getVar('token_reset'),
         ]);
         return $this->response->setJSON(['id' => $id])

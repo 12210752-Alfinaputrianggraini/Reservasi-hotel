@@ -11,7 +11,7 @@ class KamartipeController extends BaseController
 {
     public function index()
     {
-        return view('Kamartipe/table');
+        return view('backend/Kamartipe/table');
     }
     public function all(){
         $pm = new KamartipeModel();

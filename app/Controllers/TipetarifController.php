@@ -11,7 +11,7 @@ class TipetarifController extends BaseController
 {
     public function index()
     {
-        return view('tipetarif/table');
+        return view('backend/tipetarif/table');
     }
     public function all(){
         $pm = new TipetarifModel();

@@ -18,7 +18,7 @@ crossorigin="anonymous"></script>
     <table id='table-kamartipe' class="datatable table table-bordered">
          <thead>
              <tr>
-                <th>Id</th>
+                <th>No</th>
                 <th>Tipe</th>
                 <th>Keterangan</th>
                 <th>Urutan</th>
@@ -41,6 +41,10 @@ crossorigin="anonymous"></script>
             <form id="formkamartipe" method="post" action="<?=base_url('kamartipe')?>">
                 <input type="hidden" name="id" />
                 <input type="hidden" name="_method"/>
+                <div class="mb-3">
+                    <label class="form-label">No</label>
+                    <input type="text" name="no" class="form-control" />
+                </div>
                 <div class="mb-3">
                     <label class="form-label">Tipe</label>
                     <input type="text" name="tipe" class="form-control" />
@@ -138,7 +142,7 @@ $(document).ready(function(){
         columns: [
             { data: 'id', sortable:false, searchable:false, 
               render: (data,type,row,meta)=>{
-                return meta.settings._iDisplayStart + 1;
+                return meta.settings._iDisplayStart + meta.row + 1;
               }
             },
             // {data: 'id'},

@@ -16,7 +16,7 @@ crossorigin="anonymous"></script>
     <table id='table-kamartarif' class="datatable table table-bordered">
          <thead>
              <tr>
-                <th>Id</th>
+                <th>No</th>
                 <th>Tarif</th>
                 <th>Tanggal Mulai</th>
                 <th>Tanggal Selesai</th>
@@ -34,7 +34,7 @@ crossorigin="anonymous"></script>
             <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-            <from id="formkamartarif" method="post" action="<?=base_url('kamartarif')?>">
+            <form id="formkamartarif" method="post" action="<?=base_url('kamartarif')?>">
                 <input type="hidden" name="id" />
                 <input type="hidden" name="_method"/>
                 <div class="mb-3">
@@ -49,7 +49,7 @@ crossorigin="anonymous"></script>
                     <label class="form-label">deskripsi</label>
                     <input type="date" name="tgl_selesai" class="form-control" />
                 </div>
-            </from>
+            </form>
         </div>
         <div class="modal-footer">
             <button class="btn btn-success" id='btn-kirim'>Kirim</button>
@@ -120,7 +120,7 @@ $(document).ready(function(){
         columns: [
             { data: 'id', sortable:false, searchable:false, 
               render: (data,type,row,meta)=>{
-                return meta.settings._iDisplayStart + 1;
+                return meta.settings._iDisplayStart + meta.row + 1;
               }
             },
             // {data: 'id'},
