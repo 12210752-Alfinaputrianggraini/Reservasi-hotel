@@ -8,11 +8,11 @@ use App\Models\KamartarifModel;
 use App\Models\KamartipeModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
-class KamarstarifController extends BaseController
+class KamartarifController extends BaseController
 {
     public function index()
     {
-        return view('kamartarif/table');
+        return view('backend/kamartarif/table');
     }
     public function all(){
         $pm = new KamartarifModel();

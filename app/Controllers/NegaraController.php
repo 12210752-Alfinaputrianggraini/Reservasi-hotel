@@ -11,7 +11,7 @@ class NegaraController extends BaseController
 {
     public function index()
     {
-        return view('negara/table');
+        return view('backend/negara/table');
     }
     public function all(){
         $pm = new NegaraModel();

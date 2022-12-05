@@ -11,7 +11,7 @@ class PemesananController extends BaseController
 {
     public function index()
     {
-        return view('pemesanan/table');
+        return view('backend/pemesanan/table');
     }
     public function all(){
         $pm = new PemesananModel();

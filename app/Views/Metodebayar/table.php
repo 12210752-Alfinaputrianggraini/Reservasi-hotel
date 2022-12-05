@@ -124,7 +124,7 @@ $(document).ready(function(){
         columns: [
             { data: 'id', sortable:false, searchable:false, 
               render: (data,type,row,meta)=>{
-                return meta.settings._iDisplayStart + 1;
+                return meta.settings._iDisplayStart + meta.row + 1;
               }
             },
             // {data: 'id'},

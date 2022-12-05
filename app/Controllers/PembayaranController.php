@@ -11,7 +11,7 @@ class PembayaranController extends BaseController
 {
     public function index()
     {
-        return view('pembayaran/table');
+        return view('backend/pembayaran/table');
     }
     public function all(){
         $pm = new PembayaranModel();

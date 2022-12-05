@@ -11,7 +11,7 @@ class KamardipesanController extends BaseController
 {
     public function index()
     {
-        return view('kamardipesan/table');
+        return view('backend/kamardipesan/table');
     }
     public function all(){
         $pm = new KamarDipesanModel();

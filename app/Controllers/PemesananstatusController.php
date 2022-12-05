@@ -11,7 +11,7 @@ class PemesananstatusController extends BaseController
 {
     public function index()
     {
-        return view('pemesananstatus/table');
+        return view('backend/pemesananstatus/table');
     }
     public function all(){
         $pm = new PemesananstatusModel();
