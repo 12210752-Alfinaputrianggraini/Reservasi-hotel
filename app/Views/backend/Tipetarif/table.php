@@ -32,8 +32,13 @@
                 <input type="hidden" name="id" />
                 <input type="hidden" name="_method"/>
                 <div class="mb-3">
-                    <label class="form-label">Tipe</label>
-                    <input type="text" name="tipe" class="form-control" />
+                    <label class="form-label">Tipe Tarif</label>
+                    <select name="tipe" class="form-control">
+                        <option>Pilih Tarif</option>
+                        <option value="1">Normal</option>
+                        <option value="2">Akhir Pekan</option>
+                        <option value="3">Corporate</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Keterangan</label>
@@ -134,7 +139,18 @@ $(document).ready(function(){
               }
             },
             // {data: 'id'},
-            { data: 'tipe' },
+            { data: 'tipe', 
+              render: (data, type, meta, row)=>{
+                if( data === '1' ){
+                    return 'Normal';
+                }else if( data === '2' ){
+                    return 'Akhir Pekan';
+                }else if( data === '3' ){
+                    return 'Corporate';
+                }
+                return data;
+              }
+            }, 
             { data: 'keterangan' },
             { data: 'urutan' },
             { data: 'aktif', 

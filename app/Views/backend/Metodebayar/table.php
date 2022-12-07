@@ -29,12 +29,13 @@
                 <input type="hidden" name="id" />
                 <input type="hidden" name="_method"/>
                 <div class="mb-3">
-                    <label class="form-label">No</label>
-                    <input type="text" name="no" class="form-control" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Metode</label>
-                    <input type="text" name="metode" class="form-control" />
+                    <label class="form-label">Metode Bayar</label>
+                    <select name="metode" class="form-control">
+                        <option>Pilih metode</option>
+                        <option value="1">Tunai</option>
+                        <option value="2">Transfer</option>
+                        <option value="3">Debit Card</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Aktif</label>
@@ -128,7 +129,18 @@ $(document).ready(function(){
               }
             },
             // {data: 'id'},
-            { data: 'metode' },
+            { data: 'metode', 
+              render: (data, type, meta, row)=>{
+                if( data === '1' ){
+                    return 'Tunai';
+                }else if( data === '2' ){
+                    return 'Transfer';
+                }else if( data === '3' ){
+                    return 'Debit Card';
+                }
+                return data;
+              }
+            }, 
             { data: 'aktif', 
               render: (data, type, meta, row)=>{
                 if( data === 'Y' ){

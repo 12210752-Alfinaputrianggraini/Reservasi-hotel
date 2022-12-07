@@ -81,6 +81,7 @@ class PenggunaController extends BaseController
         return view('backend/pengguna/table');
     }
     public function all(){
+
         $pm = new PenggunaModel();
         $pm->select('id, nama_depan, nama_belakang, gender, alamat, kota, tgl_lhr, notelp, nohp, email, level, foto, sandi, token_reset');
 
@@ -109,7 +110,7 @@ class PenggunaController extends BaseController
             'nohp  '        => $this->request->getVar('nohp'),
             'email'         => $this->request->getVar('email'),
             'level'         => $this->request->getVar('level'),
-            // 'foto'          => $this->request->getVar('foto'),
+             'foto'          => $this->request->getVar('foto'),
             'sandi'         => password_hash($sandi, PASSWORD_BCRYPT),
             // 'token_reset'   => $this->request->getVar('token_reset'),
         ]);

@@ -12,6 +12,7 @@
                 <th>No</th>
                 <th>Status</th>
                 <th>Keterangan</th>
+                <th>urutan</th>
                 <th>Aktif</th>
                 <th>Aksi</th>
             </tr>

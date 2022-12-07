@@ -34,7 +34,12 @@
                 <input type="hidden" name="_method"/>
                 <div class="mb-3">
                     <label class="form-label">Tipe</label>
-                    <input type="text" name="tipe" class="form-control" />
+                    <select name="tipe" class="form-control">
+                        <option>Pilih Tipe</option>
+                        <option value="1">Deluxe</option>
+                        <option value="2">Superior</option>
+                        <option value="3">Suite</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Keterangan</label>
@@ -104,7 +109,7 @@ $(document).ready(function(){
         let baseurl = "<?=base_url()?>";
         $.get(`${baseurl}kamartipe/${id}`).done((e)=>{
             $('input[name=id]').val(e.id);
-            $('input[name=tipe]').val(e.tipw);
+            $('input[name=tipe]').val(e.tipe);
             $('input[name=keterangan]').val(e.keterangan);
             $('input[name=urutan]').val(e.urutan);
             $('input[name=aktif]').val(e.aktif);
@@ -141,7 +146,18 @@ $(document).ready(function(){
               }
             },
             // {data: 'id'},
-            { data: 'tipe' },
+            { data: 'tipe', 
+              render: (data, type, meta, row)=>{
+                if( data === '1' ){
+                    return 'Deluxe';
+                }else if( data === '2' ){
+                    return 'Superior';
+                }else if( data === '3' ){
+                    return 'Suite';
+                }
+                return data;
+              }
+            }, 
             { data: 'keterangan' },
             { data: 'urutan' },
             { data: 'aktif', 

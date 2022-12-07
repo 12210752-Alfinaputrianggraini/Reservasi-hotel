@@ -40,3 +40,4 @@ class KamartarifModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 }
+
