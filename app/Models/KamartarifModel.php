@@ -39,4 +39,16 @@ class KamartarifModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public static function view(){
+        $sq = (new KamartarifModel())
+                ->join('kamartipe', 'kamartipe_id=kamartipe.id', 'left')
+                ->join('tipetarif', 'tipetarif_id=tipetarif.id', 'left')
+                ->select('kamartarif.*, kamartipe.tipe, tipetarif.tipe as tipetarif')
+                ->builder();
+        $r = db_connect()->newQuery()->fromSubquery($sq, 'tb');
+        $r->table = '';
+        return $r;
+    }
 }
+

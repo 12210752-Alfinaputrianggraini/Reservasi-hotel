@@ -39,4 +39,16 @@ class PembayaranModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public static function view(){
+        $sq = (new PembayaranModel())
+                ->join('metodebayar', 'metodebayar_id=metodebayar.id', 'left')
+                ->join('pengguna', 'pengguna_id=pengguna.id', 'left')
+                ->select('pembayaran.*, metodebayar.metode, pengguna.nama_depan')
+                ->builder();
+                
+        $r = db_connect()->newQuery()->fromSubquery($sq, 'tbl');
+        $r->table = 'tbl';
+        return $r;
+    }
 }

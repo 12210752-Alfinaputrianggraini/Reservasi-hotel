@@ -2,7 +2,15 @@
 
 <?=$this->section('content')?>
 
-<div class="container">
+<div class="contrainer mt-3">
+<div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-dark">Table Data Metode bayar</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
     <button class="float-end btn-sm btn-primary" id="btn-tambah">Tambah</button>
 
     <table id='table-metodebayar' class="datatable table table-bordered">
@@ -29,11 +37,7 @@
                 <input type="hidden" name="id" />
                 <input type="hidden" name="_method"/>
                 <div class="mb-3">
-                    <label class="form-label">No</label>
-                    <input type="text" name="no" class="form-control" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Metode</label>
+                    <label class="form-label">Metode Bayar</label>
                     <input type="text" name="metode" class="form-control" />
                 </div>
                 <div class="mb-3">
@@ -102,7 +106,7 @@ $(document).ready(function(){
     });
 
     $('table#table-metodebayar').on('click', '.btn-hapus', function(){
-        let konfirmasi = confirm('Data pelanggan akan dihapus, mau dilanjutkan?');
+        let konfirmasi = confirm('Data metodebayar akan dihapus, mau dilanjutkan?');
 
         if(konfirmasi === true){
             let _id = $(this).data('id');
@@ -128,7 +132,7 @@ $(document).ready(function(){
               }
             },
             // {data: 'id'},
-            { data: 'metode' },
+            { data: 'metode'}, 
             { data: 'aktif', 
               render: (data, type, meta, row)=>{
                 if( data === 'Y' ){

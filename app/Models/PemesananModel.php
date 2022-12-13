@@ -39,4 +39,16 @@ class PemesananModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+    public static function view(){
+        $sq = (new PemesananModel())
+                ->join('kamar', 'kamar_id=kamar.id', 'left')
+                ->join('pemesananstatus', 'pemesananstatus_id=pemesananstatus.id', 'left')
+                ->join('tamu', 'tamu_id=tamu.id', 'left')
+                ->select('pemesanan.*, kamar.deskripsi , pemesananstatus.status, tamu.nama_depan')
+                ->builder();
+
+        $r = db_connect()->newQuery()->fromSubquery($sq, 'tb');
+        $r->table = '';
+        return $r;
+    }
 }

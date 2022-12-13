@@ -2,28 +2,16 @@
 
 <?=$this->section('content')?>
 
-<!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Data Pengguna</h1>
-                    <p class="mb-4">mengelola data pengguna yang ada di sistem.</p>
-
-<div class="container mt-5">
-
+<div class="contrainer mt-3">
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
-        
-        <button id="btn-tambah" class="btn btn-primary">Tambah data</button>
-        <h6 class="m-0 font-weight-bold text-primary">
-            
-        </h6>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-dark">Table Data Pengguna</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-<div class="container">
-<li class="nav-item">
-    <a class="nav-link" href="<?= base_url(); ?>/logout">Logout</a>
-</li>
-
+    <button class="float-end btn-sm btn-primary" id="btn-tambah">Tambah</button>
     <table id='table-pelanggan' class="datatable table table-bordered">
          <thead>
             <tr>
@@ -47,7 +35,7 @@
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">From Pelanggan Hotel</h5>
+            <h5 class="modal-title">Form Pengguna Hotel</h5>
             <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
@@ -180,7 +168,7 @@ $(document).ready(function(){
     });
 
     $('table#table-pelanggan').on('click', '.btn-hapus', function(){
-        let konfirmasi = confirm('Data pelanggan akan dihapus, mau dilanjutkan?');
+        let konfirmasi = confirm('Data pengguna akan dihapus, mau dilanjutkan?');
 
         if(konfirmasi === true){
             let _id = $(this).data('id');

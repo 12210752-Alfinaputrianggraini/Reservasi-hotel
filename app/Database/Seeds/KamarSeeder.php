@@ -11,8 +11,8 @@ class KamarSeeder extends Seeder
     {
         $id = (new KamarModel())->insert([
             'kamartipe_id' => '1',
-            'lantai' => 'marmer',
-            'nomor' => '401',
+            'lantai' => '1',
+            'nomor' => '101',
             'kamarstatus_id' => '1',
             'deskripsi' => 'kamar sudah dipersiapakan',
         ]);

@@ -2,8 +2,15 @@
 
 <?=$this->section('content')?>
 
+<div class="contrainer mt-3">
+<div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-dark">Table Data Kamar Status</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-<div class="container">
     <button class="float-end btn-sm btn-primary" id="btn-tambah">Tambah</button>
 
     <table id='table-kamarstatus' class="datatable table table-bordered">
@@ -12,6 +19,7 @@
                 <th>No</th>
                 <th>Status</th>
                 <th>Keterangan</th>
+                <th>urutan</th>
                 <th>Aktif</th>
                 <th>Aksi</th>
             </tr>
@@ -36,7 +44,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Keterangan</label>
-                    <input type="text" name="metode" class="form-control" />
+                    <input type="text" name="keterangan" class="form-control" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">urutan</label>
@@ -110,7 +118,7 @@ $(document).ready(function(){
     });
 
     $('table#table-kamarstatus').on('click', '.btn-hapus', function(){
-        let konfirmasi = confirm('Data pelanggan akan dihapus, mau dilanjutkan?');
+        let konfirmasi = confirm('Data kamarstatus akan dihapus, mau dilanjutkan?');
 
         if(konfirmasi === true){
             let _id = $(this).data('id');
@@ -136,7 +144,7 @@ $(document).ready(function(){
               }
             },
             // {data: 'id'},
-            { data: 'status' },
+            { data: 'status'},
             { data: 'keterangan' },
             { data: 'urutan' },
             { data: 'aktif', 

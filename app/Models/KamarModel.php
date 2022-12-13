@@ -39,4 +39,11 @@ class KamarModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public static function view(){
+        return (new KamarModel())
+                ->join('kamartipe', 'kamartipe_id=kamartipe.id', 'left')
+                ->join('kamarstatus', 'kamarstatus_id=kamarstatus.id', 'left')
+                ->select('kamar.*, kamartipe.tipe, kamarstatus.status');
+    }
 }

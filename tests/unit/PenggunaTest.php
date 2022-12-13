@@ -21,7 +21,7 @@ class PenggunaTest extends CIUnitTestCase{
         $json = $this->call('post', 'pengguna', [
             'nama_depan'  => 'Testing nama',
             'gender'    => 'L',
-            'email' => 'testing@email.com',
+            'email' => 'testing@gmail.com',
             'sandi' => 'testing'
         ])->getJSON();
         $js = json_decode($json, true);
