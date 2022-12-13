@@ -39,4 +39,14 @@ class TamuModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public static function view(){
+        $sq = (new TamuModel())
+                ->join('negara', 'negara_id=negara.id', 'left')
+                ->select('tamu.*, negara.negara as negara')
+                ->builder();
+        $r = db_connect()->newQuery()->fromSubquery($sq, 'tb');
+        $r->table = '';
+        return $r;
+    }
 }

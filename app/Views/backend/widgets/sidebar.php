@@ -15,7 +15,7 @@
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
     <a class="nav-link" href="index.html">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <i class="fas fa-fw fa-home"></i>
         <span>Dashboard</span></a>
 </li>
 
@@ -67,9 +67,5 @@
         </div>
     </div>
 </li>
-<li class="sidebar">
-                <a  href="<?= base_url(); ?>/logout">Logout</a>
-                    <i class="icon-log-out"></i>
-            </li>
 </ul>
 <!-- End of Sidebar -->

@@ -1,9 +1,16 @@
 <?=$this->extend('backend/template')?>
 
-
 <?=$this->section('content')?>
 
-<div class="container">
+<div class="contrainer mt-3">
+<div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-dark">Table Data Tamu</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
     <button class="float-end btn-sm btn-primary" id="btn-tambah">Tambah</button>
 
     <table id='table-tamu' class="datatable table table-bordered">
@@ -15,6 +22,7 @@
                 <th>Gender</th>
                 <th>Alamat</th>
                 <th>Kota</th>
+                <th>Negara</th>
                 <th>Nomor hp</th>
                 <th>Email</th>
                 <th>Aksi</th>
@@ -27,7 +35,7 @@
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">From Tamu Hotel</h5>
+            <h5 class="modal-title">Form Tamu Hotel</h5>
             <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
@@ -59,6 +67,15 @@
                     <input type="text" name="kota" class="form-control" />
                 </div>
                 <div class="mb-3">
+                        <label for="lblnama" class="form-label">Negara</label>
+                        <select name="negara_id" class="form-control">
+                            <option>Pilih Negara</option>
+                            <?php foreach($data_negara as $t): ?>
+                                <option value="<?=$t['id']?>"><?=$t['negara']?></option>
+                            <?php endforeach;?>    
+                        </select>
+                    </div>
+                <div class="mb-3">
                     <label class="form-label">Nomor hp</label>
                     <input type="int" name="nohp" class="form-control" />
                 </div>
@@ -87,6 +104,46 @@ crossorigin="anonymous"></script>
 
 <script>
 $(document).ready(function(){
+    $('select[name=negara_id]').select2({
+            width:'100%'
+    });
+    
+    $('button#btn-kirim').on('click', function(){
+        $('form#formtamu').submit();
+    });
+
+    $('table#table-tamu').on('click', '.btn-edit', function(){
+        let id = $(this).data('id');
+        let baseurl = "<?=base_url()?>";
+        $.get(`${baseurl}/tamu/${id}`).done((e)=>{
+            $('input[name=id]').val(e.id);
+            $('input[name=nama_depan]').val(e.nama_depan);
+            $('input[name=nama_belakang]').val(e.nama_belakang);
+            $('input[name=gender]').val(e.gender);
+            $('input[name=alamat]').val(e.alamat);
+            $('input[name=kota]').val(e.kota);
+            $('input[name=negara_id]').val(e.negara_id);
+            $('input[name=nohp]').val(e.nohp);
+            $('input[name=email]').val(e.email);
+            $('#modalForm').modal('show');
+            $('input[name=_method]').val('patch');
+        });
+    });
+
+    $('table#table-tamu').on('click', '.btn-hapus', function(){
+        let konfirmasi = confirm('Data tamu akan dihapus, mau dilanjutkan?');
+
+        if(konfirmasi === true){
+            let _id = $(this).data('id');
+            let baseurl = "<?=base_url()?>";
+
+            $.post(`${baseurl}/tamu`, {id:_id, _method:'delete'}).done(function(e){
+                $('table#table-tamu').DataTable().ajax.reload();
+            });
+        }
+    });
+
+
     $('form#formtamu').submitAjax({
         pre:()=>{
             $('button#btn-kirim').hide();
@@ -103,45 +160,15 @@ $(document).ready(function(){
         }
     });
 
-    $('button#btn-kirim').on('click', function(){
-        $('form#formtamu').submit();
-    });
-
+   
     $('button#btn-tambah').on('click', function(){
         $('#modalForm').modal('show');
         $('form#formtamu').trigger('reset');
         $('input[name=_method]').val('');
     });
 
-    $('table#table-tamu').on('click', '.btn-edit', function(){
-        let id = $(this).data('id');
-        let baseurl = "<?=base_url()?>";
-        $.get(`${baseurl}/tamu/${id}`).done((e)=>{
-            $('input[name=id]').val(e.id);
-            $('input[name=nama_depan]').val(e.nama_depan);
-            $('input[name=nama_belakang]').val(e.nama_belakang);
-            $('input[name=gender]').val(e.gender);
-            $('input[name=alamat]').val(e.alamat);
-            $('input[name=kota]').val(e.kota);
-            $('input[name=nohp]').val(e.nohp);
-            $('input[name=email]').val(e.email);
-            $('#modalForm').modal('show');
-            $('input[name=_method]').val('patch');
-        });
-    });
-
-    $('table#table-tamu').on('click', '.btn-hapus', function(){
-        let konfirmasi = confirm('Data pelanggan akan dihapus, mau dilanjutkan?');
-
-        if(konfirmasi === true){
-            let _id = $(this).data('id');
-            let baseurl = "<?=base_url()?>";
-
-            $.post(`${baseurl}/tamu`, {id:_id, _method:'delete'}).done(function(e){
-                $('table#table-tamu').DataTable().ajax.reload();
-            });
-        }
-    });
+    
+    
 
     $('table#table-tamu').DataTable({
         processing: true,
@@ -171,6 +198,7 @@ $(document).ready(function(){
             },
             { data: 'alamat' },
             { data: 'kota' },
+            { data: 'negara' },
             { data: 'nohp' },
             { data: 'email' },
             { data: 'id', 

@@ -2,7 +2,15 @@
 
 <?=$this->section('content')?>
 
-<div class="container">
+<div class="contrainer mt-3">
+<div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-dark">Table Data Negara</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
     <button class="float-end btn-sm btn-primary" id="btn-tambah">Tambah</button>
 
     <table id='table-negara' class="datatable table table-bordered">
@@ -77,8 +85,9 @@ $(document).ready(function(){
     
     $('table#table-negara').on('click', '.btn-edit', function(){
         let id = $(this).data('id');
+        
         let baseurl = "<?=base_url()?>";
-        $.get(`${baseurl}negara/${id}`).done((e)=>{
+        $.get(`${baseurl}/negara/${id}`).done((e)=>{
             $('input[name=id]').val(e.id);
             $('input[name=negara]').val(e.negara);
             $('#modalForm').modal('show');
@@ -87,7 +96,7 @@ $(document).ready(function(){
     });
 
     $('table#table-negara').on('click', '.btn-hapus', function(){
-        let konfirmasi = confirm('Data pelanggan akan dihapus, mau dilanjutkan?');
+        let konfirmasi = confirm('Data negara akan dihapus, mau dilanjutkan?');
 
         if(konfirmasi === true){
             let _id = $(this).data('id');

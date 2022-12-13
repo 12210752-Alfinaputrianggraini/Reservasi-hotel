@@ -60,7 +60,7 @@ $routes->group('pengguna', ['filter'=>'otentikasi'], function(RouteCollection $r
     $routes->get('all', 'PenggunaController::all');
 });
 
-$routes->group('metodebayar', function(RouteCollection $routes){
+$routes->group('metodebayar',['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'MetodebayarController::index');
     $routes->post('/', 'MetodebayarController::store');
     $routes->patch('/', 'MetodebayarController::update');
@@ -69,7 +69,7 @@ $routes->group('metodebayar', function(RouteCollection $routes){
     $routes->get('all', 'MetodebayarController::all');
 });
 
-$routes->group('tipetarif', function(RouteCollection $routes){
+$routes->group('tipetarif',['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'TipetarifController::index');
     $routes->post('/', 'TipetarifController::store');
     $routes->patch('/', 'TipetarifController::update');
@@ -78,7 +78,7 @@ $routes->group('tipetarif', function(RouteCollection $routes){
     $routes->get('all', 'TipetarifController::all');
 });
 
-$routes->group('kamartipe', function(RouteCollection $routes){
+$routes->group('kamartipe',['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'KamartipeController::index');
     $routes->post('/', 'KamartipeController::store');
     $routes->patch('/', 'KamartipeController::update');
@@ -87,7 +87,7 @@ $routes->group('kamartipe', function(RouteCollection $routes){
     $routes->get('all', 'KamartipeController::all');
 });
 
-$routes->group('kamartarif', function(RouteCollection $routes){
+$routes->group('kamartarif',['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'KamartarifController::index');
     $routes->post('/', 'KamartarifController::store');
     $routes->patch('/', 'KamartarifController::update');
@@ -96,7 +96,7 @@ $routes->group('kamartarif', function(RouteCollection $routes){
     $routes->get('all', 'KamartarifController::all');
 });
 
-$routes->group('kamarstatus', function(RouteCollection $routes){
+$routes->group('kamarstatus',['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'KamarstatusController::index');
     $routes->post('/', 'KamarstatusController::store');
     $routes->patch('/', 'KamarstatusController::update');
@@ -105,7 +105,7 @@ $routes->group('kamarstatus', function(RouteCollection $routes){
     $routes->get('all', 'KamarstatusController::all');
 });
 
-$routes->group('kamar', function(RouteCollection $routes){
+$routes->group('kamar',['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'KamarController::index');
     $routes->post('/', 'KamarController::store');
     $routes->patch('/', 'KamarController::update');
@@ -114,7 +114,7 @@ $routes->group('kamar', function(RouteCollection $routes){
     $routes->get('all', 'KamarController::all');
 });
 
-$routes->group('pemesananstatus', function(RouteCollection $routes){
+$routes->group('pemesananstatus',['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'PemesananstatusController::index');
     $routes->post('/', 'PemesananstatusController::store');
     $routes->patch('/', 'PemesananstatusController::update');
@@ -123,7 +123,7 @@ $routes->group('pemesananstatus', function(RouteCollection $routes){
     $routes->get('all', 'PemesananstatusController::all');
 });
 
-$routes->group('negara', function(RouteCollection $routes){
+$routes->group('negara',['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'NegaraController::index');
     $routes->post('/', 'NegaraController::store');
     $routes->patch('/', 'NegaraController::update');
@@ -132,7 +132,7 @@ $routes->group('negara', function(RouteCollection $routes){
     $routes->get('all', 'NegaraController::all');
 });
 
-$routes->group('tamu', function(RouteCollection $routes){
+$routes->group('tamu',['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'TamuController::index');
     $routes->post('/', 'TamuController::store');
     $routes->patch('/', 'TamuController::update');
@@ -141,7 +141,7 @@ $routes->group('tamu', function(RouteCollection $routes){
     $routes->get('all', 'TamuController::all');
 });
 
-$routes->group('pemesanan', function(RouteCollection $routes){
+$routes->group('pemesanan',['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'PemesananController::index');
     $routes->post('/', 'PemesananController::store');
     $routes->patch('/', 'PemesananController::update');
@@ -150,7 +150,7 @@ $routes->group('pemesanan', function(RouteCollection $routes){
     $routes->get('all', 'PemesananController::all');
 });
 
-$routes->group('kamardipesan', function(RouteCollection $routes){
+$routes->group('kamardipesan',['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'KamardipesanController::index');
     $routes->post('/', 'KamardipesanController::store');
     $routes->patch('/', 'KamardipesanController::update');
@@ -159,13 +159,23 @@ $routes->group('kamardipesan', function(RouteCollection $routes){
     $routes->get('all', 'KamardipesanController::all');
 });
 
-$routes->group('pembayaran', function(RouteCollection $routes){
+$routes->group('pembayaran',['filter'=>'otentikasi'], function(RouteCollection $routes){
     $routes->get('/', 'PembayaranController::index');
     $routes->post('/', 'PembayaranController::store');
     $routes->patch('/', 'PembayaranController::update');
     $routes->delete('/', 'PembayaranController::delete');
     $routes->get('(:num)', 'PembayaranController::show/$1');
     $routes->get('all', 'PembayaranController::all');
+});
+
+$routes->group('dashboard',['filter'=> 'login'], function(RouteCollection $routes){
+    $routes->get('/', 'DashboardController::index');
+    $routes->post('/', 'DashboardController::store');
+    $routes->patch('/', 'DashboardController::update');
+    $routes->delete('/', 'DashboardController::delete');
+    $routes->get('(:num)', 'DashboardController::show/$1');
+    $routes->get('all', 'DashboardController::all');
+
 });
 
 

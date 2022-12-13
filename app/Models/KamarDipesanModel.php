@@ -39,4 +39,17 @@ class KamarDipesanModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public static function view(){
+        $sq = (new KamarDipesanModel())
+                ->join('pemesanan', 'pemesanan_id=pemesanan.id', 'left')
+                ->join('kamar', 'pemesanan.kamar_id=kamar.id', 'left')
+                ->join('pengguna', 'pengguna_id=pengguna.id', 'left')
+                ->select('kamardipesan.*, pemesanan.id as pemesananid, kamar.deskripsi, pengguna.nama_depan')
+                ->builder();
+        
+        $r = db_connect()->newQuery()->fromSubquery($sq, 'tb');
+        $r->table = '';
+        return $r;
+    }
 }

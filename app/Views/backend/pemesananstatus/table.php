@@ -2,8 +2,16 @@
 
 <?=$this->section('content')?>
 
-<div class="container">
-    <button class="float-end btn btn-sm btn-primary" id="btn-tambah">Tambah</button>
+<div class="contrainer mt-3">
+<div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-dark">Table Data Pemesanan status</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+    <button class="float-end btn-sm btn-primary" id="btn-tambah">Tambah</button>
 
     <table id='table-pemesananstatus' class="datatable table table-bordered">
          <thead>
@@ -22,11 +30,11 @@
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">From Pemesanan Status Hotel</h5>
+            <h5 class="modal-title">Form Pemesanan Status Hotel</h5>
             <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="mod al-body">
-            <form id="formpemesananstatus" method="post" action="<?=base_url('metodebayar')?>">
+            <form id="formpemesananstatus" method="post" action="<?=base_url('pemesananstatus')?>">
                 <input type="hidden" name="id" />
                 <input type="hidden" name="_method"/>
                 <div class="mb-3">
@@ -47,11 +55,11 @@
                 </div>
             </form>
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-success" id='btn-kirim'>Kirim</button>
+            <div class="modal-footer">
+                <button class="btn btn-success" id='btn-kirim'>Kirim</button>
+             </div>
         </div>
     </div>
-</div>
 </div>
 <?=$this->endSection()?>
 
@@ -75,7 +83,7 @@ $(document).ready(function(){
             $("#modalForm").modal('hide');
             $("table#table-pemesananstatus").DataTable().ajax.reload();
         },
-        error:  (xhr, status)=>{
+        error:(xhr, status)=>{
             alert('Maaf, data pengguna gagal direkam');
         }
     })
@@ -89,20 +97,20 @@ $(document).ready(function(){
     });
 
     $('table#table-pemesananstatus').on('click', '.btn-edit',  function(){
-            var id = $(this).data('id'); 
-            $.get('<?=base_url('pemesananstatus')?>/' + id).done(function(e){
-                $('#formModal').modal('show');
+            let id = $(this).data('id');
+            let baseurl = "<?=base_url()?>";
+            $.get(`${baseurl}/pemesananstatus/${id}`).done((e)=>{
+                $('input[name=id]').val(e.id);
                 $('input[name=status]').val(e.status);    
                 $('select[name=urutan]').val(e.urutan);
                 $('input[name=aktif]').val(e.aktif);
-                $('input[name=id]').val(e.id);
+                $('#modalForm').modal('show');
                 $('input[name=_method]').val('patch');
             });
         });
 
     $('table#table-pemesananstatus').on('click', '.btn-hapus', function(){
-        let konfirmasi = confirm('Data pelanggan akan dihapus, mau dilanjutkan?');
-
+        let konfirmasi = confirm ('Data pemesananstatus akan dihapus, mau dilanjutkan?');
         if(konfirmasi === true){
             let _id = $(this).data('id');
             let baseurl = "<?=base_url()?>";
@@ -126,7 +134,6 @@ $(document).ready(function(){
                 return meta.settings._iDisplayStart + meta.row + 1;
               }
             },
-            // {data: 'id'},
             { data: 'status' },
             { data: 'urutan' },
             { data: 'aktif', 
@@ -141,8 +148,8 @@ $(document).ready(function(){
             },
             { data: 'id', 
               render: (data, type, meta, row)=>{
-                var btnEdit  = `<button class='btn-edit btn btn-primary' data-id='${data}'> Edit </button>`;
-                var btnHapus = `<button class='btn-hapus btn btn-danger' data-id='${data}'> Hapus </button>`;
+                 var btnEdit = `<button class='btn btn-primary btn-edit' data-id='${data}'> Edit </button>`;
+                 var btnHapus = `<button class='btn btn-danger btn-hapus' data-id='${data}'> Hapus </button>`;
                 return btnEdit + btnHapus;
               }
             }

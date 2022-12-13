@@ -2,8 +2,15 @@
 
 <?=$this->section('content')?>
 
+<div class="contrainer mt-3">
+<div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-dark">Table Data Kamar Tipe</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-<div class="container">
     <button class="float-end btn-sm btn-primary" id="btn-tambah">Tambah</button>
 
     <table id='table-kamartipe' class="datatable table table-bordered">
@@ -25,7 +32,7 @@
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">From Tipe Tarif Hotel</h5>
+            <h5 class="modal-title">Form Tipe Tarif Hotel</h5>
             <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
@@ -34,12 +41,7 @@
                 <input type="hidden" name="_method"/>
                 <div class="mb-3">
                     <label class="form-label">Tipe</label>
-                    <select name="tipe" class="form-control">
-                        <option>Pilih Tipe</option>
-                        <option value="1">Deluxe</option>
-                        <option value="2">Superior</option>
-                        <option value="3">Suite</option>
-                    </select>
+                    <input type="text" name="tipe" class="form-control" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Keterangan</label>
@@ -51,8 +53,9 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">gambar</label>
-                    <input type="file" name="gambar" class="form-control" />
+                    <input type="text" name="gambar" class="form-control" />
                 </div>
+                <div class="mb-3" ></div>
                 <div class="mb-3">
                     <label class="form-label">Aktif</label>
                     <select name="aktif" class="form-control">
@@ -76,6 +79,11 @@
 crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/gh/agoenxz2186/submitAjax@develop/submit_ajax.js"
 ></script>
+
+<script src="<?=base_url('assets/vendor/dropify/dist/js/dropify.min.js')?>"></script>
+<link href="<?=base_url('assets/vendor/dropify/dist/css/dropify.min.css')?>" rel="stylesheet" />
+
+
 <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
 <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>
@@ -107,7 +115,7 @@ $(document).ready(function(){
     $('table#table-kamartipe').on('click', '.btn-edit', function(){
         let id = $(this).data('id');
         let baseurl = "<?=base_url()?>";
-        $.get(`${baseurl}kamartipe/${id}`).done((e)=>{
+        $.get(`${baseurl}/kamartipe/${id}`).done((e)=>{
             $('input[name=id]').val(e.id);
             $('input[name=tipe]').val(e.tipe);
             $('input[name=keterangan]').val(e.keterangan);
@@ -120,7 +128,7 @@ $(document).ready(function(){
     });
 
     $('table#table-kamartipe').on('click', '.btn-hapus', function(){
-        let konfirmasi = confirm('Data pelanggan akan dihapus, mau dilanjutkan?');
+        let konfirmasi = confirm('Data kamartipe akan dihapus, mau dilanjutkan?');
 
         if(konfirmasi === true){
             let _id = $(this).data('id');
@@ -145,19 +153,7 @@ $(document).ready(function(){
                 return meta.settings._iDisplayStart + meta.row + 1;
               }
             },
-            // {data: 'id'},
-            { data: 'tipe', 
-              render: (data, type, meta, row)=>{
-                if( data === '1' ){
-                    return 'Deluxe';
-                }else if( data === '2' ){
-                    return 'Superior';
-                }else if( data === '3' ){
-                    return 'Suite';
-                }
-                return data;
-              }
-            }, 
+            { data: 'tipe' }, 
             { data: 'keterangan' },
             { data: 'urutan' },
             { data: 'aktif', 
